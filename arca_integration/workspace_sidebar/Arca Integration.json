@@ -1,0 +1,75 @@
+{
+ "doctype": "Workspace Sidebar",
+ "name": "Arca Integration",
+ "title": "Arca Integration",
+ "module": "Arca Integration",
+ "header_icon": "integration",
+ "items": [
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 1,
+   "type": "Link",
+   "label": "Configuracion ARCA",
+   "link_type": "DocType",
+   "link_to": "ARCA Settings",
+   "icon": "setting"
+  },
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 2,
+   "type": "Link",
+   "label": "Consulta de CUIT",
+   "link_type": "DocType",
+   "link_to": "ARCA CUIT Query",
+   "icon": "search"
+  },
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 3,
+   "type": "Link",
+   "label": "Cuentas de ingresos",
+   "link_type": "DocType",
+   "link_to": "ARCA Mapeo de Cuenta de Ingreso",
+   "icon": "income"
+  },
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 4,
+   "type": "Link",
+   "label": "Cuentas de impuestos",
+   "link_type": "DocType",
+   "link_to": "ARCA Mapeo de Cuenta de Impuesto",
+   "icon": "accounting"
+  },
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 5,
+   "type": "Link",
+   "label": "Comprobantes",
+   "link_type": "DocType",
+   "link_to": "ARCA Comprobante",
+   "icon": "file"
+  },
+  {
+   "doctype": "Workspace Sidebar Item",
+   "parentfield": "items",
+   "parenttype": "Workspace Sidebar",
+   "idx": 6,
+   "type": "Link",
+   "label": "Bloqueos de emisión",
+   "link_type": "DocType",
+   "link_to": "ARCA Bloqueo de Emision",
+   "icon": "lock"
+  }
+ ]
+}

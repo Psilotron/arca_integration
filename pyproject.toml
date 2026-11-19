@@ -1,0 +1,31 @@
+[project]
+name = "arca_integration"
+version = "0.1.0"
+description = "Consulta de contribuyentes y facturación electrónica contra los web services de ARCA (ex-AFIP)."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Psilotron", email = "sistemas@psilotron.com" },
+]
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Frappe",
+    "Programming Language :: Python :: 3",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["arca_integration*"]
+
+[tool.bench.frappe-dependencies]
+frappe = ">=15.0.0,<17.0.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["live: hits ARCA homologación over the network"]

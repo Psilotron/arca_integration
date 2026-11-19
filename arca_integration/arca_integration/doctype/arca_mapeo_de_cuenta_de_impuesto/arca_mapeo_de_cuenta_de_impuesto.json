@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-13 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "account",
+  "naturaleza",
+  "activo"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Compañía",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "description": "Cuenta que aparece como account_head en una fila de impuestos.",
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cuenta",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "description": "Qué representa la fila de impuestos. La versión 1 solo acepta IVA.",
+   "fieldname": "naturaleza",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Naturaleza fiscal",
+   "options": "IVA\nPercepcion\nOtro",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Una fila inactiva no participa en ninguna emisión y conserva su historial.",
+   "fieldname": "activo",
+   "fieldtype": "Check",
+   "label": "Activo"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-13 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Arca Integration",
+ "name": "ARCA Mapeo de Cuenta de Impuesto",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

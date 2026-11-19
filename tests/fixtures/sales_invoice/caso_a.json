@@ -1,0 +1,36 @@
+{
+ "_caso": "A",
+ "_descripcion": "Un ítem al 21 %, sin nada más.",
+ "_source": "provisional",
+ "company": "Demo SA",
+ "conversion_rate": 1,
+ "currency": "ARS",
+ "discount_amount": 0,
+ "grand_total": 1210.0,
+ "is_return": 0,
+ "items": [
+  {
+   "idx": 1,
+   "income_account": "Ventas Gravadas",
+   "item_tax_rate": "{}",
+   "item_tax_template": "",
+   "net_amount": 1000.0
+  }
+ ],
+ "net_total": 1000.0,
+ "posting_date": "2026-11-12",
+ "rounded_total": 1210.0,
+ "rounding_adjustment": 0,
+ "taxes": [
+  {
+   "account_head": "IVA 21%",
+   "add_deduct_tax": "Add",
+   "charge_type": "On Net Total",
+   "idx": 1,
+   "included_in_print_rate": 0,
+   "rate": 21,
+   "tax_amount": 210.0
+  }
+ ],
+ "total_taxes_and_charges": 210.0
+}

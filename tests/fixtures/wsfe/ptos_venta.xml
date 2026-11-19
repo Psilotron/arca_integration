@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CONSTRUCTED from the published WSDL, not captured: this CUIT has no point of
+     sale registered in homologación yet. Replace with a real capture once one
+     exists. -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <FEParamGetPtosVentaResponse xmlns="http://ar.gov.afip.dif.FEV1/">
+      <FEParamGetPtosVentaResult>
+        <ResultGet>
+          <PtoVenta>
+            <Nro>1</Nro>
+            <EmisionTipo>CAE</EmisionTipo>
+            <Bloqueado>N</Bloqueado>
+            <FchBaja>NULL</FchBaja>
+          </PtoVenta>
+          <PtoVenta>
+            <Nro>2</Nro>
+            <EmisionTipo>CAE</EmisionTipo>
+            <Bloqueado>N</Bloqueado>
+            <FchBaja>NULL</FchBaja>
+          </PtoVenta>
+          <PtoVenta>
+            <Nro>3</Nro>
+            <EmisionTipo>CAE</EmisionTipo>
+            <Bloqueado>S</Bloqueado>
+            <FchBaja>20240101</FchBaja>
+          </PtoVenta>
+        </ResultGet>
+      </FEParamGetPtosVentaResult>
+    </FEParamGetPtosVentaResponse>
+  </soap:Body>
+</soap:Envelope>

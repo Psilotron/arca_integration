@@ -1,0 +1,36 @@
+{
+ "_caso": "D",
+ "_descripcion": "0 % es una alícuota, no una exención.",
+ "_source": "provisional",
+ "company": "Demo SA",
+ "conversion_rate": 1,
+ "currency": "ARS",
+ "discount_amount": 0,
+ "grand_total": 800.0,
+ "is_return": 0,
+ "items": [
+  {
+   "idx": 1,
+   "income_account": "Ventas Gravadas",
+   "item_tax_rate": "{}",
+   "item_tax_template": "",
+   "net_amount": 800.0
+  }
+ ],
+ "net_total": 800.0,
+ "posting_date": "2026-11-12",
+ "rounded_total": 800.0,
+ "rounding_adjustment": 0,
+ "taxes": [
+  {
+   "account_head": "IVA 0%",
+   "add_deduct_tax": "Add",
+   "charge_type": "On Net Total",
+   "idx": 1,
+   "included_in_print_rate": 0,
+   "rate": 0,
+   "tax_amount": 0.0
+  }
+ ],
+ "total_taxes_and_charges": 0.0
+}

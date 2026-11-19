@@ -1,0 +1,392 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-11-15 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_comprobante",
+  "sales_invoice",
+  "estado",
+  "column_break_comprobante",
+  "company",
+  "problema",
+  "section_break_receptor",
+  "customer",
+  "condicion_iva_receptor",
+  "column_break_receptor",
+  "doc_tipo",
+  "doc_nro",
+  "section_break_fiscal",
+  "pto_venta",
+  "cbte_tipo",
+  "fecha_comprobante",
+  "column_break_fiscal",
+  "environment",
+  "section_break_importes",
+  "imp_neto",
+  "imp_iva",
+  "column_break_importes",
+  "imp_trib",
+  "imp_total",
+  "section_break_resultado",
+  "resultado",
+  "cbte_nro",
+  "cae",
+  "column_break_resultado",
+  "cae_vence",
+  "motivo_rechazo",
+  "section_break_trazas",
+  "cbte_clase",
+  "concepto",
+  "intentos",
+  "column_break_tecnico",
+  "solicitado_at",
+  "respondido_at",
+  "conciliado_at",
+  "solicitud_xml",
+  "respuesta_xml",
+  "alicuotas"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_comprobante",
+   "fieldtype": "Section Break",
+   "label": "Comprobante",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Factura de venta",
+   "options": "Sales Invoice",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "default": "Borrador",
+   "fieldname": "estado",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Estado",
+   "options": "Borrador\nSolicitando\nAutorizado\nRechazado\nIncierto",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "column_break_comprobante",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Compañía",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "problema",
+   "fieldtype": "Small Text",
+   "label": "Qué falta para poder emitir",
+   "read_only": 1,
+   "hidden": 1,
+   "print_hide": 1
+  },
+  {
+   "fieldname": "section_break_receptor",
+   "fieldtype": "Section Break",
+   "label": "Receptor",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Cliente",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "condicion_iva_receptor",
+   "fieldtype": "Select",
+   "label": "Condición frente al IVA",
+   "options": "1\n4\n5\n6\n7\n8\n9\n10\n13\n15\n16",
+   "read_only_depends_on": "eval:!['Borrador', 'Rechazado'].includes(doc.estado)"
+  },
+  {
+   "fieldname": "column_break_receptor",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "doc_tipo",
+   "fieldtype": "Select",
+   "label": "Tipo de documento",
+   "options": "80\n96\n99",
+   "read_only_depends_on": "eval:!['Borrador', 'Rechazado'].includes(doc.estado)"
+  },
+  {
+   "fieldname": "doc_nro",
+   "fieldtype": "Data",
+   "label": "Número de documento",
+   "read_only_depends_on": "eval:!['Borrador', 'Rechazado'].includes(doc.estado)",
+   "depends_on": "eval:['80', '96'].includes(String(doc.doc_tipo || ''))"
+  },
+  {
+   "fieldname": "section_break_fiscal",
+   "fieldtype": "Section Break",
+   "label": "Emisión",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "pto_venta",
+   "fieldtype": "Int",
+   "label": "Punto de venta",
+   "read_only_depends_on": "eval:!['Borrador', 'Rechazado'].includes(doc.estado)"
+  },
+  {
+   "fieldname": "cbte_tipo",
+   "fieldtype": "Select",
+   "label": "Tipo de comprobante",
+   "options": "1\n6",
+   "read_only_depends_on": "eval:!['Borrador', 'Rechazado'].includes(doc.estado)"
+  },
+  {
+   "fieldname": "fecha_comprobante",
+   "fieldtype": "Date",
+   "label": "Fecha del comprobante",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fiscal",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "label": "Ambiente",
+   "options": "Homologación\nProducción",
+   "read_only": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "section_break_importes",
+   "fieldtype": "Section Break",
+   "label": "Importes",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "imp_neto",
+   "fieldtype": "Currency",
+   "label": "Importe neto gravado",
+   "read_only": 1
+  },
+  {
+   "fieldname": "imp_iva",
+   "fieldtype": "Currency",
+   "label": "Importe IVA",
+   "read_only": 1
+  },
+  {
+   "fieldname": "imp_trib",
+   "fieldtype": "Currency",
+   "label": "Importe tributos",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_importes",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "imp_total",
+   "fieldtype": "Currency",
+   "label": "Importe total",
+   "read_only": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "alicuotas",
+   "fieldtype": "Table",
+   "label": "Alícuotas de IVA",
+   "options": "ARCA Alicuota IVA",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_resultado",
+   "fieldtype": "Section Break",
+   "label": "Resultado de ARCA",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "resultado",
+   "fieldtype": "Select",
+   "label": "Resultado",
+   "options": "A\nR",
+   "read_only": 1,
+   "depends_on": "eval:['Autorizado', 'Rechazado'].includes(doc.estado)",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "cbte_nro",
+   "fieldtype": "Int",
+   "label": "Número de comprobante",
+   "read_only": 1,
+   "depends_on": "eval:doc.cbte_nro > 0",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "cae",
+   "fieldtype": "Data",
+   "label": "CAE",
+   "read_only": 1,
+   "depends_on": "eval:doc.estado == 'Autorizado'",
+   "bold": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "column_break_resultado",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cae_vence",
+   "fieldtype": "Date",
+   "label": "Vencimiento del CAE",
+   "read_only": 1,
+   "depends_on": "eval:doc.estado == 'Autorizado'",
+   "no_copy": 1
+  },
+  {
+   "fieldname": "motivo_rechazo",
+   "fieldtype": "Small Text",
+   "label": "Motivo / observaciones",
+   "read_only": 1,
+   "depends_on": "eval:['Incierto', 'Rechazado'].includes(doc.estado)",
+   "no_copy": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_trazas",
+   "fieldtype": "Section Break",
+   "label": "Detalle técnico",
+   "hide_border": 1,
+   "collapsible_depends_on": "eval:['Incierto', 'Solicitando', 'Rechazado'].includes(doc.estado)"
+  },
+  {
+   "fieldname": "cbte_clase",
+   "fieldtype": "Select",
+   "label": "Clase",
+   "options": "A\nB",
+   "read_only": 1,
+   "no_copy": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "concepto",
+   "fieldtype": "Int",
+   "label": "Concepto",
+   "read_only": 1,
+   "hidden": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "intentos",
+   "fieldtype": "Int",
+   "label": "Intentos",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "column_break_tecnico",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "solicitado_at",
+   "fieldtype": "Datetime",
+   "label": "Solicitado",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "respondido_at",
+   "fieldtype": "Datetime",
+   "label": "Respondido",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "conciliado_at",
+   "fieldtype": "Datetime",
+   "label": "Conciliado",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "solicitud_xml",
+   "fieldtype": "Code",
+   "label": "Solicitud enviada",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  },
+  {
+   "fieldname": "respuesta_xml",
+   "fieldtype": "Code",
+   "label": "Respuesta de ARCA",
+   "read_only": 1,
+   "print_hide": 1,
+   "no_copy": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-11-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Arca Integration",
+ "name": "ARCA Comprobante",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "sales_invoice",
+ "track_changes": 1
+}

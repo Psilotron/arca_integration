@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Body><loginCmsResponse xmlns="http://wsaa.view.sua.dvadac.desein.afip.gov"><loginCmsReturn>&lt;loginTicketResponse version=&quot;1.0&quot;&gt;
+    &lt;header&gt;
+        &lt;source&gt;CN=wsaahomo, O=AFIP, C=AR, SERIALNUMBER=CUIT 33693450239&lt;/source&gt;
+        &lt;destination&gt;SERIALNUMBER=CUIT 20000000001, CN=erp&lt;/destination&gt;
+        &lt;uniqueId&gt;3125512449&lt;/uniqueId&gt;
+        &lt;generationTime&gt;2026-11-11T11:15:26.405-03:00&lt;/generationTime&gt;
+        &lt;expirationTime&gt;2026-11-11T23:15:26.405-03:00&lt;/expirationTime&gt;
+    &lt;/header&gt;
+    &lt;credentials&gt;
+        &lt;token&gt;RkFLRVRPS0VORk9SUlRIRVRFU1Q=&lt;/token&gt;
+        &lt;sign&gt;RkFLRVNJR05GT1JUSEVURVNU&lt;/sign&gt;
+    &lt;/credentials&gt;
+&lt;/loginTicketResponse&gt;</loginCmsReturn></loginCmsResponse></soapenv:Body></soapenv:Envelope>
