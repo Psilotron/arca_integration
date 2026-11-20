@@ -124,8 +124,52 @@ def sync_catalogs(company: str) -> dict[str, SyncResult]:
 		doctype: upsert_codes(doctype, getattr(client, method)()) for doctype, method in CODE_CATALOGS.items()
 	}
 	results["ARCA Receiver VAT Condition"] = sync_receiver_conditions(client)
+	link_standard_records()
 	_show_events(client)
 	return results
+
+
+# Standard ERPNext records and the ARCA code they stand for.
+STANDARD_LINKS = {
+	("Currency", "arca_currency", "ARCA Currency"): {
+		"ARS": "PES",
+		"USD": "DOL",
+		"EUR": "060",
+		"BRL": "012",
+		"GBP": "021",
+		"JPY": "019",
+		"UYU": "011",
+		"MXN": "010",
+		"CAD": "018",
+		"CLP": "033",
+	},
+	("UOM", "arca_unit_of_measure", "ARCA Unit of Measure"): {
+		"Nos": "7",
+		"Unit": "7",
+		"Kg": "1",
+		"Gram": "14",
+		"Litre": "5",
+		"Millilitre": "47",
+		"Meter": "2",
+		"Centimeter": "20",
+		"Kilometer": "17",
+		"Square Meter": "3",
+		"Cubic Meter": "4",
+		"Pair": "8",
+	},
+}
+
+
+def link_standard_records() -> None:
+	"""Link standard currencies and units to their ARCA code, where nobody set one yet."""
+	for (doctype, fieldname, catalog), links in STANDARD_LINKS.items():
+		for name, code in links.items():
+			if (
+				frappe.db.exists(doctype, name)
+				and frappe.db.exists(catalog, code)
+				and not frappe.db.get_value(doctype, name, fieldname)
+			):
+				frappe.db.set_value(doctype, name, fieldname, code, update_modified=False)
 
 
 def sync_points_of_sale(company: str, points: list[PointOfSale] | None = None) -> SyncResult:
