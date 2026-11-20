@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 15:39+0000\n"
-"PO-Revision-Date: 2026-11-20 15:39+0000\n"
+"POT-Creation-Date: 2026-11-20 16:46+0000\n"
+"PO-Revision-Date: 2026-11-20 16:46+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language-Team: sistemas@psilotron.com\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: arca_integration/arca/connection.py:289
+#: arca_integration/arca/connection.py:305
 msgid "'Complete from ARCA' is available."
 msgstr ""
 
@@ -43,7 +43,7 @@ msgstr ""
 msgid "ARCA Access Ticket"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:184
+#: arca_integration/arca/catalogs.py:208
 msgid "ARCA Announcement"
 msgstr ""
 
@@ -133,7 +133,7 @@ msgstr ""
 msgid "ARCA Status"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:195 arca_integration/arca/catalogs.py:197
+#: arca_integration/arca/catalogs.py:219 arca_integration/arca/catalogs.py:221
 msgid "ARCA Sync"
 msgstr ""
 
@@ -175,7 +175,7 @@ msgstr ""
 msgid "ARCA Voucher Type"
 msgstr ""
 
-#: arca_integration/arca/connection.py:240
+#: arca_integration/arca/connection.py:256
 msgid "ARCA accepted the certificate for wsmtxca."
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "ARCA answered: {0}"
 msgstr ""
 
-#: arca_integration/arca/connection.py:269
+#: arca_integration/arca/connection.py:285
 msgid "ARCA codes"
 msgstr ""
 
@@ -215,7 +215,7 @@ msgstr ""
 msgid "ARCA does not register this CUIT as VAT registered (Responsable Inscripto). WSMTXCA only authorizes A and B invoices, which require it."
 msgstr ""
 
-#: arca_integration/arca/connection.py:180
+#: arca_integration/arca/connection.py:196
 msgid "ARCA has no active point of sale for invoices with item detail for this CUIT."
 msgstr ""
 
@@ -224,12 +224,12 @@ msgstr ""
 msgid "ARCA has no taxpayer with CUIT {0}."
 msgstr ""
 
-#: arca_integration/arca/connection.py:193
+#: arca_integration/arca/connection.py:209
 #, python-brace-format
 msgid "ARCA has {0} active points of sale."
 msgstr ""
 
-#: arca_integration/arca/connection.py:215
+#: arca_integration/arca/connection.py:231
 msgid "ARCA is answering."
 msgstr ""
 
@@ -238,7 +238,7 @@ msgstr ""
 msgid "ARCA is ready to authorize your invoices."
 msgstr ""
 
-#: arca_integration/arca/connection.py:254
+#: arca_integration/arca/connection.py:270
 #, python-brace-format
 msgid "ARCA lets CUIT {0} use wsmtxca."
 msgstr ""
@@ -272,7 +272,7 @@ msgstr ""
 msgid "ARCA rejected the login: {0}"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:195
+#: arca_integration/arca/catalogs.py:219
 #, python-brace-format
 msgid "ARCA rejected the request: {0}"
 msgstr ""
@@ -281,7 +281,7 @@ msgstr ""
 msgid "ARCA rejected the time of the request."
 msgstr ""
 
-#: arca_integration/arca/connection.py:223
+#: arca_integration/arca/connection.py:239
 #, python-brace-format
 msgid "ARCA reports problems in its servers (application: {0}, database: {1}, authentication: {2})."
 msgstr ""
@@ -290,7 +290,7 @@ msgstr ""
 msgid "ARCA reports that the service is not available right now."
 msgstr ""
 
-#: arca_integration/arca/connection.py:211
+#: arca_integration/arca/connection.py:227
 msgid "ARCA service"
 msgstr ""
 
@@ -372,7 +372,7 @@ msgstr ""
 msgid "CUIT"
 msgstr ""
 
-#: arca_integration/arca/connection.py:282
+#: arca_integration/arca/connection.py:298
 msgid "CUIT lookup in the ARCA registry (optional)"
 msgstr ""
 
@@ -422,7 +422,7 @@ msgstr ""
 msgid "Certificate Subject"
 msgstr ""
 
-#: arca_integration/arca/connection.py:233
+#: arca_integration/arca/connection.py:249
 msgid "Certificate authorization (WSAA)"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Choose the certificate file, the private key file or both."
 msgstr ""
 
-#: arca_integration/arca/connection.py:194
+#: arca_integration/arca/connection.py:210
 msgid "Choose the one this company uses in 'Default Point of Sale'."
 msgstr ""
 
@@ -494,11 +494,11 @@ msgstr ""
 msgid "Code"
 msgstr ""
 
-#: arca_integration/arca/connection.py:273
+#: arca_integration/arca/connection.py:289
 msgid "Codes are up to date."
 msgstr ""
 
-#: arca_integration/arca/connection.py:277
+#: arca_integration/arca/connection.py:293
 msgid "Codes downloaded from ARCA."
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Connection Status"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:197
+#: arca_integration/arca/catalogs.py:221
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:104
 #, python-brace-format
 msgid "Could not connect to ARCA: {0}"
@@ -708,7 +708,7 @@ msgstr ""
 msgid "Fiscal Address"
 msgstr ""
 
-#: arca_integration/arca/connection.py:208
+#: arca_integration/arca/connection.py:224
 msgid "Fix the previous step first."
 msgstr ""
 
@@ -771,6 +771,11 @@ msgstr ""
 msgid "Homologation certificates do not work in production, and vice versa. Paste the certificate ARCA issued for this environment."
 msgstr ""
 
+#: arca_integration/arca/connection.py:188
+#, python-brace-format
+msgid "Homologation does not require registering points of sale. Point of sale {0} is used for tests."
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:113
 msgid "Homologation: vouchers authorized in this environment have no fiscal validity."
 msgstr ""
@@ -794,7 +799,7 @@ msgstr ""
 msgid "In WSASS, create an authorization for the {0} service using this certificate's computer name."
 msgstr ""
 
-#: arca_integration/arca/connection.py:246
+#: arca_integration/arca/connection.py:262
 msgid "Invoices with item detail (WSMTXCA)"
 msgstr ""
 
@@ -870,7 +875,7 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: arca_integration/arca/connection.py:182
+#: arca_integration/arca/connection.py:198
 msgid "On the ARCA website, open 'Administración de puntos de venta y domicilios' and create a point of sale for 'Factura electrónica - Codificación de productos - Web services'. Use a new number, not shared with other systems."
 msgstr ""
 
@@ -892,7 +897,7 @@ msgid "Pending"
 msgstr ""
 
 #: arca_integration/arca/connection.py:162
-#: arca_integration/arca/connection.py:262
+#: arca_integration/arca/connection.py:278
 msgid "Point of sale"
 msgstr ""
 
@@ -902,7 +907,7 @@ msgstr ""
 msgid "Point of sale used for new invoices. Only points of sale enabled in ARCA can be chosen."
 msgstr ""
 
-#: arca_integration/arca/connection.py:199
+#: arca_integration/arca/connection.py:215
 #, python-brace-format
 msgid "Point of sale {0} is active."
 msgstr ""
@@ -1127,12 +1132,12 @@ msgstr ""
 msgid "Technical detail"
 msgstr ""
 
-#: arca_integration/arca/connection.py:344
+#: arca_integration/arca/connection.py:360
 #, python-brace-format
 msgid "The ARCA certificate of {0} expires in {1} days."
 msgstr ""
 
-#: arca_integration/arca/connection.py:347
+#: arca_integration/arca/connection.py:363
 #, python-brace-format
 msgid "The ARCA certificate of {0} has expired. Invoices cannot be authorized until it is renewed."
 msgstr ""
@@ -1209,7 +1214,7 @@ msgid "The private key is protected with a password. Remove it and load the new 
 msgstr ""
 
 #: arca_integration/arca/connection.py:46
-#: arca_integration/arca/connection.py:225
+#: arca_integration/arca/connection.py:241
 msgid "The problem is on ARCA's side. Try again later."
 msgstr ""
 

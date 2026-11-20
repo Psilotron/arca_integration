@@ -110,6 +110,15 @@ class TestConnection(IntegrationTestCase):
 		result = connection.verify_connection(self.company)
 		self.assertEqual(self.steps(result)["points_of_sale"], "error")
 
+	def test_homologation_without_points_of_sale_uses_a_test_one(self):
+		self.points = []
+		for _ in range(2):  # the second check keeps it
+			result = connection.verify_connection(self.company)
+			self.assertEqual(self.steps(result)["points_of_sale"], "ok")
+		settings = frappe.get_doc("ARCA Company Settings", self.company)
+		self.assertTrue(settings.default_point_of_sale.endswith("-00001"))
+		self.assertEqual(result["status"], "Ready")
+
 	def test_certificate_close_to_expiry_is_a_warning(self):
 		with patch.object(connection, "days_until", return_value=10):
 			result = connection.verify_connection(self.company)
