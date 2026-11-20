@@ -26,10 +26,17 @@ bench --site <sitio> clear-cache
 
 En el commit van `main.pot` y `es.po`. El `.mo` se genera en `sites/assets/locale/` y no se versiona.
 
-## Controles automáticos
+## Controles
 
-- **Test** `arca_integration/tests/test_translations.py`: falla si alguna cadena de `main.pot` no está traducida en `es.po`, o si su traducción está vacía o marcada como *fuzzy*.
-- **CI**: después de los tests, regenera `main.pot` y `es.po` y falla si hay diferencias con lo commiteado (sin contar fechas ni comentarios). Si falla, corré los pasos 1 a 3 y commiteá.
+- **Test** `arca_integration/tests/test_translations.py`:
+  - Falla si alguna cadena de `main.pot` no está traducida en `es.po`, o si su traducción está vacía o marcada como *fuzzy*.
+  - Falla si una traducción contradice a la de Frappe o ERPNext para la misma cadena. Frappe junta las traducciones de todas las apps en un solo diccionario, así que hay que usar la misma traducción o renombrar la cadena fuente.
+- **Antes de cada commit** con textos nuevos, corré los pasos 1 a 3. Para verificar que `main.pot` está al día:
+
+  ```bash
+  bench generate-pot-file --app arca_integration
+  git -C apps/arca_integration diff --exit-code -I'^(#|"(POT-Creation-Date|PO-Revision-Date|Generated-By): )' -- arca_integration/locale
+  ```
 
 ## Idioma del sitio y de los usuarios
 
