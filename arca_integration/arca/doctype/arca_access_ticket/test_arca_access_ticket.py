@@ -14,7 +14,7 @@ from arca_integration.services.wsaa import Ticket
 from arca_integration.tests.test_credentials import make_certificate
 from arca_integration.tests.utils import get_test_company
 
-IGNORE_TEST_RECORD_DEPENDENCIES = ["Company", "Address"]
+IGNORE_TEST_RECORD_DEPENDENCIES = ["Company", "Address", "ARCA Point of Sale", "ARCA VAT Condition"]
 LOGIN = "arca_integration.services.wsaa.login"
 
 

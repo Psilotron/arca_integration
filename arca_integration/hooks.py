@@ -176,7 +176,10 @@ doc_events = {
 # ---------------
 
 scheduler_events = {
-	"daily": ["arca_integration.arca.catalogs.scheduled_sync"],
+	"daily": [
+		"arca_integration.arca.catalogs.scheduled_sync",
+		"arca_integration.arca.connection.notify_expiring_certificates",
+	],
 }
 
 # scheduler_events = {

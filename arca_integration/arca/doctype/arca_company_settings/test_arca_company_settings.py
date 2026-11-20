@@ -16,7 +16,7 @@ from arca_integration.tests.utils import get_test_company
 DOCTYPE = "ARCA Company Settings"
 
 # Use the minimal company from tests.utils instead of ERPNext's full Company test records.
-IGNORE_TEST_RECORD_DEPENDENCIES = ["Company", "Address"]
+IGNORE_TEST_RECORD_DEPENDENCIES = ["Company", "Address", "ARCA Point of Sale", "ARCA VAT Condition"]
 
 
 class TestARCACompanySettings(IntegrationTestCase):

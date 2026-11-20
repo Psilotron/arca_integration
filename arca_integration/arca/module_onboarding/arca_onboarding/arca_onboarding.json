@@ -1,0 +1,38 @@
+{
+ "allow_roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Accounts Manager"
+  }
+ ],
+ "creation": "2026-11-20 12:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Module Onboarding",
+ "documentation_url": "",
+ "idx": 0,
+ "is_complete": 0,
+ "modified": "2026-11-20 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ARCA",
+ "name": "ARCA Onboarding",
+ "owner": "Administrator",
+ "steps": [
+  {
+   "step": "ARCA Company"
+  },
+  {
+   "step": "ARCA Certificate"
+  },
+  {
+   "step": "ARCA Point of Sale"
+  },
+  {
+   "step": "ARCA Connection"
+  }
+ ],
+ "subtitle": "Certificate, point of sale and connection check",
+ "success_message": "ARCA is ready to authorize your invoices.",
+ "title": "Set up electronic invoicing with ARCA"
+}
