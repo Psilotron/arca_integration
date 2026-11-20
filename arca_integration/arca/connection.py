@@ -11,12 +11,12 @@ import frappe
 from frappe import _
 from frappe.utils import get_datetime, now_datetime
 
-from arca_integration.arca.catalogs import sync_catalogs, sync_points_of_sale
+from arca_integration.arca.catalogs import create_test_point_of_sale, sync_catalogs, sync_points_of_sale
 from arca_integration.arca.doctype.arca_access_ticket.arca_access_ticket import obtain_ticket
 from arca_integration.arca.doctype.arca_company_settings.arca_company_settings import get_company_settings
 from arca_integration.arca.mtxca import get_status_client, mtxca_client_for
 from arca_integration.services.diagnosis import CERTIFICATE_WARNING_DAYS, Problem, classify, days_until
-from arca_integration.services.endpoints import Environment, Service
+from arca_integration.services.endpoints import WSAA_SERVICE_IDS, Environment, Service
 from arca_integration.services.errors import ArcaError
 
 OK, WARNING, ERROR, SKIPPED = "ok", "warning", "error", "skipped"
@@ -31,7 +31,9 @@ ONBOARDING_STEPS = {
 }
 
 
-def problem_message(problem: Problem, environment: str, cuit: str, raw: str = "") -> tuple[str, str]:
+def problem_message(
+	problem: Problem, environment: str, cuit: str, raw: str = "", service: str = "wsmtxca"
+) -> tuple[str, str]:
 	"""(what happened, what to do) for a classified failure, in the user's language."""
 	homologation = environment == Environment.HOMOLOGATION
 	messages = {
@@ -54,20 +56,20 @@ def problem_message(problem: Problem, environment: str, cuit: str, raw: str = ""
 			),
 		),
 		Problem.SERVICE_NOT_AUTHORIZED: (
-			_("The certificate is not authorized for the wsmtxca service (invoices with item detail)."),
+			_("The certificate is not authorized for the {0} service.").format(service),
 			_(
-				"In WSASS, create an authorization for the wsmtxca service using this certificate's computer name."
-			)
+				"In WSASS, create an authorization for the {0} service using this certificate's computer name."
+			).format(service)
 			if homologation
 			else _(
-				"On the ARCA website, open 'Administrador de Relaciones de Clave Fiscal', add a relation for the wsmtxca web service and assign it to this certificate's computer name."
-			),
+				"On the ARCA website, open 'Administrador de Relaciones de Clave Fiscal', add a relation for the {0} web service and assign it to this certificate's computer name."
+			).format(service),
 		),
 		Problem.CUIT_NOT_RELATED: (
 			_("ARCA does not find CUIT {0} among the relations of this certificate.").format(cuit),
 			_(
-				"If the certificate belongs to another CUIT (for example, your accountant's), the company must delegate the wsmtxca service to that CUIT in 'Administrador de Relaciones de Clave Fiscal'."
-			),
+				"If the certificate belongs to another CUIT (for example, your accountant's), the company must delegate the {0} service to that CUIT in 'Administrador de Relaciones de Clave Fiscal'."
+			).format(service),
 		),
 		Problem.ALREADY_AUTHENTICATED: (
 			_("ARCA already issued an access ticket for this certificate that this site did not keep."),
@@ -84,7 +86,16 @@ def problem_message(problem: Problem, environment: str, cuit: str, raw: str = ""
 	)
 
 
-def _step(key: str, title: str, status: str, message: str = "", action: str = "", detail: str = "") -> dict:
+def _step(
+	key: str,
+	title: str,
+	status: str,
+	message: str = "",
+	action: str = "",
+	detail: str = "",
+	optional: bool = False,
+) -> dict:
+	"""One checklist row. Optional steps never keep the company from being Ready."""
 	return {
 		"key": key,
 		"title": title,
@@ -92,6 +103,7 @@ def _step(key: str, title: str, status: str, message: str = "", action: str = ""
 		"message": message,
 		"action": action,
 		"detail": detail,
+		"optional": optional,
 	}
 
 
@@ -160,6 +172,22 @@ def choose_point_of_sale(settings) -> dict:
 		fields=["name", "number"],
 		order_by="number asc",
 	)
+	listed = frappe.db.exists(
+		"ARCA Point of Sale",
+		{"company": settings.company, "environment": settings.environment, "disabled": 0},
+	)
+	if not listed and settings.environment == Environment.HOMOLOGATION:
+		# Homologation lists no points of sale and accepts any number.
+		point = create_test_point_of_sale(settings.company)
+		settings.db_set("default_point_of_sale", point.name, update_modified=False)
+		return _step(
+			"points_of_sale",
+			title,
+			OK,
+			_(
+				"Homologation does not require registering points of sale. Point of sale {0} is used for tests."
+			).format(f"{point.number:05d}"),
+		)
 	if not usable:
 		return _step(
 			"points_of_sale",
@@ -266,6 +294,20 @@ def run_checks(company: str) -> list[dict]:
 		except ArcaError as exc:
 			steps.append(_failed("catalogs", title, exc, settings))
 
+	# 6. Padrón lookup (optional: only for "Complete from ARCA")
+	title = _("CUIT lookup in the ARCA registry (optional)")
+	if failed:
+		skip("padron", title)
+		steps[-1]["optional"] = True
+	else:
+		try:
+			obtain_ticket(company, Service.PADRON_A5)
+			steps.append(_step("padron", title, OK, _("'Complete from ARCA' is available."), optional=True))
+		except ArcaError as exc:
+			step = _failed("padron", title, exc, settings, service=WSAA_SERVICE_IDS[Service.PADRON_A5])
+			step.update(status=WARNING, optional=True)
+			steps.append(step)
+
 	return steps
 
 
@@ -274,7 +316,7 @@ def verify_connection(company: str) -> dict:
 	"""Run every check, store the result on ARCA Company Settings and return it."""
 	frappe.get_doc("ARCA Company Settings", company).check_permission("write")
 	steps = run_checks(company)
-	ready = all(step["status"] == OK for step in steps)
+	ready = all(step["status"] == OK for step in steps if not step.get("optional"))
 	status = READY if ready else NEEDS_ATTENTION
 
 	settings = get_company_settings(company)

@@ -65,7 +65,7 @@ class TestConnection(IntegrationTestCase):
 		settings = frappe.get_doc("ARCA Company Settings", self.company)
 		self.assertTrue(settings.default_point_of_sale.endswith("-00003"))
 		self.assertEqual(settings.connection_status, "Ready")
-		self.assertEqual(len(json.loads(settings.connection_report)), 6)
+		self.assertEqual(len(json.loads(settings.connection_report)), 7)
 		self.assertEqual(frappe.db.get_value("Onboarding Step", "ARCA Connection", "is_complete"), 1)
 
 	def test_missing_certificate_stops_before_calling_arca(self):
@@ -109,6 +109,15 @@ class TestConnection(IntegrationTestCase):
 		self.points = [PointOfSale(5, True, None), PointOfSale(6, False, date(2026, 1, 1))]
 		result = connection.verify_connection(self.company)
 		self.assertEqual(self.steps(result)["points_of_sale"], "error")
+
+	def test_homologation_without_points_of_sale_uses_a_test_one(self):
+		self.points = []
+		for _ in range(2):  # the second check keeps it
+			result = connection.verify_connection(self.company)
+			self.assertEqual(self.steps(result)["points_of_sale"], "ok")
+		settings = frappe.get_doc("ARCA Company Settings", self.company)
+		self.assertTrue(settings.default_point_of_sale.endswith("-00001"))
+		self.assertEqual(result["status"], "Ready")
 
 	def test_certificate_close_to_expiry_is_a_warning(self):
 		with patch.object(connection, "days_until", return_value=10):

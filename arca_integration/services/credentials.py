@@ -82,6 +82,12 @@ def generate_private_key() -> str:
 	).decode()
 
 
+def is_encrypted_key(private_key_pem: str) -> bool:
+	"""True for keys protected with a passphrase (PKCS#8 encrypted or legacy OpenSSL headers)."""
+	text = private_key_pem or ""
+	return "BEGIN ENCRYPTED PRIVATE KEY" in text or "Proc-Type: 4,ENCRYPTED" in text
+
+
 def validate_private_key(private_key_pem: str) -> str:
 	"""Return the key as normalized PEM, or raise InvalidCredential."""
 	_load_private_key(private_key_pem)

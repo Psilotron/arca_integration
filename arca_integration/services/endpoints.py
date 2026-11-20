@@ -34,7 +34,7 @@ DEFAULT_ENDPOINTS: Mapping[tuple[Service, Environment], str] = {
 	(Service.WSMTXCA, Environment.PRODUCTION): (
 		"https://serviciosjava.afip.gob.ar/wsmtxca/services/MTXCAService"
 	),
-	# ws_sr_padron_a5
+	# Padrón A5 endpoint, used by ws_sr_constancia_inscripcion (getPersona)
 	(Service.PADRON_A5, Environment.HOMOLOGATION): (
 		"https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5"
 	),
@@ -46,7 +46,7 @@ DEFAULT_ENDPOINTS: Mapping[tuple[Service, Environment], str] = {
 # Service id that WSAA expects in the LoginTicketRequest for each service.
 WSAA_SERVICE_IDS: Mapping[Service, str] = {
 	Service.WSMTXCA: "wsmtxca",
-	Service.PADRON_A5: "ws_sr_padron_a5",
+	Service.PADRON_A5: "ws_sr_constancia_inscripcion",
 }
 
 # Verification URL encoded in the invoice QR ("Especificaciones del QR", ARCA).

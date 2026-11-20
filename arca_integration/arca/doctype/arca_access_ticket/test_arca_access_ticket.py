@@ -64,7 +64,7 @@ class TestARCAAccessTicket(IntegrationTestCase):
 			get_access_ticket(self.company, "padron_a5")
 		with patch(LOGIN, return_value=self.ticket(token="NEW")) as login:
 			self.assertEqual(get_access_ticket(self.company, "padron_a5").token, "NEW")
-		self.assertEqual(login.call_args.args[1], "ws_sr_padron_a5")
+		self.assertEqual(login.call_args.args[1], "ws_sr_constancia_inscripcion")
 
 	def test_errors_become_validation_errors(self):
 		for error in (AlreadyAuthenticated("x"), TransportTimeout("y")):
