@@ -126,6 +126,8 @@ class TestMtxcaContract(UnitTestCase):
 			"tax_types": (),
 			"receiver_vat_conditions": (1,),
 			"points_of_sale_cae": (),
+			"last_authorized": (1, 1),
+			"get_voucher": (1, 1, 1),
 		}
 		for method, args in operations.items():
 			with self.subTest(method):
@@ -140,3 +142,101 @@ class TestMtxcaContract(UnitTestCase):
 				for child in request:
 					if child.tag == "authRequest":
 						self.assertEqual([c.tag for c in child], self.children("AuthRequestType"))
+
+
+AUTHORIZED = ENVELOPE.format(
+	"""<ser:autorizarComprobanteResponse><resultado>O</resultado><comprobanteResponse>
+	<cuit>30000000007</cuit><codigoTipoComprobante>1</codigoTipoComprobante><numeroPuntoVenta>4000</numeroPuntoVenta>
+	<numeroComprobante>1</numeroComprobante><fechaEmision>2010-11-01</fechaEmision><CAE>12345678901234</CAE>
+	<fechaVencimientoCAE>2010-11-16</fechaVencimientoCAE></comprobanteResponse>
+	<arrayObservaciones><codigoDescripcion><codigo>504</codigo><descripcion>GTIN no registrado</descripcion></codigoDescripcion></arrayObservaciones>
+	</ser:autorizarComprobanteResponse>"""
+)
+REJECTED = ENVELOPE.format(
+	"""<ser:autorizarComprobanteResponse><resultado>R</resultado><arrayErrores>
+	<codigoDescripcion><codigo>102</codigo><descripcion>Numero invalido</descripcion></codigoDescripcion>
+	</arrayErrores></ser:autorizarComprobanteResponse>"""
+)
+LAST_NONE = ENVELOPE.format("<ser:consultarUltimoComprobanteAutorizadoResponse/>")
+LAST = ENVELOPE.format(
+	"<ser:consultarUltimoComprobanteAutorizadoResponse><numeroComprobante>124</numeroComprobante>"
+	"</ser:consultarUltimoComprobanteAutorizadoResponse>"
+)
+NOT_FOUND = ENVELOPE.format(
+	"""<ser:consultarComprobanteResponse><arrayErrores><codigoDescripcion><codigo>1503</codigo>
+	<descripcion>No existe</descripcion></codigoDescripcion></arrayErrores></ser:consultarComprobanteResponse>"""
+)
+FOUND = ENVELOPE.format(
+	"""<ser:consultarComprobanteResponse><comprobante><codigoTipoComprobante>1</codigoTipoComprobante>
+	<numeroPuntoVenta>4000</numeroPuntoVenta><numeroComprobante>7</numeroComprobante><fechaEmision>2010-11-01</fechaEmision>
+	<codigoAutorizacion>12345678901234</codigoAutorizacion><fechaVencimiento>2010-11-16</fechaVencimiento>
+	<codigoTipoDocumento>80</codigoTipoDocumento><numeroDocumento>30000000007</numeroDocumento>
+	<importeSubtotal>100.00</importeSubtotal><importeTotal>122.00</importeTotal><codigoMoneda>PES</codigoMoneda>
+	</comprobante></ser:consultarComprobanteResponse>"""
+)
+
+
+def manual_invoice_a():
+	from dataclasses import replace
+
+	from arca_integration.services.mtxca.builder import review
+	from arca_integration.tests.test_mtxca_builder import RULES, draft
+
+	return replace(review(draft(), RULES).voucher, number=1)
+
+
+class TestEmissionOperations(UnitTestCase):
+	def test_authorize(self):
+		calls = []
+		authorization = client(AUTHORIZED, calls).authorize(manual_invoice_a())
+
+		self.assertEqual(
+			(authorization.result, authorization.cae, authorization.number),
+			("O", "12345678901234", 1),
+		)
+		self.assertEqual(authorization.cae_due_date, date(2010, 11, 16))
+		self.assertEqual([o.code for o in authorization.observations], ["504"])
+		body = calls[0]["body"]
+		self.assertIn("<importeTotal>122.00</importeTotal>", body)
+		self.assertIn("<precioUnitario>100</precioUnitario>", body)
+
+	def test_rejection_raises(self):
+		with self.assertRaises(MtxcaError) as ctx:
+			client(REJECTED).authorize(manual_invoice_a())
+		self.assertEqual(ctx.exception.codes, {"102"})
+
+	def test_last_authorized(self):
+		self.assertEqual(client(LAST_NONE).last_authorized(1, 4000), 0)
+		self.assertEqual(client(LAST).last_authorized(1, 4000), 124)
+
+	def test_get_voucher(self):
+		self.assertIsNone(client(NOT_FOUND).get_voucher(1, 4000, 7))
+		voucher = client(FOUND).get_voucher(1, 4000, 7)
+		self.assertEqual((voucher.number, voucher.cae, str(voucher.total)), (7, "12345678901234", "122.00"))
+
+	def test_exchanges_hide_the_ticket(self):
+		c = client(LAST)
+		c.last_authorized(1, 4000)
+		self.assertIn("<token>***</token>", c.exchanges[0].request)
+		self.assertNotIn("TOK", c.exchanges[0].request)
+		self.assertIn("124", c.exchanges[0].response)
+
+
+class TestVoucherContract(TestMtxcaContract):
+	def test_voucher_follows_the_schema(self):
+		calls = []
+		client(AUTHORIZED, calls).authorize(manual_invoice_a())
+		request = parse_xml(calls[0]["body"].encode()).find(".//{*}Body")[0]
+		self.assertEqual([c.tag for c in request], self.children("AutorizarComprobanteRequestType"))
+
+		voucher = request.find("comprobanteCAERequest")
+		declared = self.direct_children("ComprobanteType")
+		tags = [c.tag for c in voucher]
+		self.assertEqual(tags, [name for name in declared if name in tags])
+		item = voucher.find("arrayItems/item")
+		item_declared = self.direct_children("ItemType")
+		self.assertEqual([c.tag for c in item], [n for n in item_declared if n in {c.tag for c in item}])
+
+	def direct_children(self, type_name):
+		sequence = self.types[type_name].find(f"{XSD}sequence")
+		return [e.get("name") for e in sequence.findall(f"{XSD}element")]
