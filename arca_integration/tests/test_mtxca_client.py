@@ -1,14 +1,19 @@
 from datetime import date
+from pathlib import Path
 
 from frappe.tests import UnitTestCase
 
 from arca_integration.services.errors import ArcaError
-from arca_integration.services.mtxca.client import Auth, CodeDescription, MtxcaClient, MtxcaError
-from arca_integration.services.soap import HttpResponse, SoapTransport
+from arca_integration.services.mtxca.client import MTXCA_NS, Auth, CodeDescription, MtxcaClient, MtxcaError
+from arca_integration.services.soap import HttpResponse, SoapTransport, parse_xml
+
+# Downloaded from ARCA (homologation; production declares the same namespace).
+WSDL = Path(__file__).parent / "fixtures" / "mtxca" / "MTXCAService.wsdl"
+XSD = "{http://www.w3.org/2001/XMLSchema}"
 
 ENVELOPE = """<?xml version="1.0"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
- xmlns:ser="http://impl.service.wsmtxca.afip.gob.ar/service/"><soapenv:Body>{}</soapenv:Body></soapenv:Envelope>"""
+ xmlns:ser="http://impl.service.wsmtxca.afip.gov.ar/service/"><soapenv:Body>{}</soapenv:Body></soapenv:Envelope>"""
 
 # Examples from the WSMTXCA manual v0.25.10, p. 268 and 288.
 VOUCHER_TYPES = ENVELOPE.format(
@@ -91,3 +96,47 @@ class TestMtxcaClient(UnitTestCase):
 	def test_operations_need_auth(self):
 		with self.assertRaises(ArcaError):
 			client(VOUCHER_TYPES, auth=None).voucher_types()
+
+
+class TestMtxcaContract(UnitTestCase):
+	"""Requests built by the client must match ARCA's published WSDL."""
+
+	@classmethod
+	def setUpClass(cls):
+		super().setUpClass()
+		cls.schema = parse_xml(WSDL.read_bytes()).find(f".//{XSD}schema")
+		cls.types = {t.get("name"): t for t in cls.schema.iter(f"{XSD}complexType")}
+		cls.elements = {
+			e.get("name"): e.get("type").split(":")[-1] for e in cls.schema.findall(f"{XSD}element")
+		}
+
+	def children(self, type_name: str) -> list[str]:
+		return [e.get("name") for e in self.types[type_name].iter(f"{XSD}element")]
+
+	def test_namespace(self):
+		self.assertEqual(self.schema.get("targetNamespace"), MTXCA_NS)
+
+	def test_requests_match_schema(self):
+		operations = {
+			"voucher_types": (),
+			"document_types": (),
+			"vat_conditions": (),
+			"currencies": (),
+			"units_of_measure": (),
+			"tax_types": (),
+			"receiver_vat_conditions": (1,),
+			"points_of_sale_cae": (),
+		}
+		for method, args in operations.items():
+			with self.subTest(method):
+				calls = []
+				getattr(client(ENVELOPE.format("<ser:response/>"), calls), method)(*args)
+				request = parse_xml(calls[0]["body"].encode()).find(".//{*}Body")[0]
+				namespace, name = request.tag[1:].split("}")
+				self.assertEqual(namespace, self.schema.get("targetNamespace"))
+				self.assertIn(name, self.elements)
+				expected = self.children(self.elements[name])
+				self.assertEqual([child.tag for child in request], expected[: len(request)])
+				for child in request:
+					if child.tag == "authRequest":
+						self.assertEqual([c.tag for c in child], self.children("AuthRequestType"))
