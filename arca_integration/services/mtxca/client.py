@@ -14,7 +14,7 @@ from lxml import etree
 from ..errors import ArcaError
 from ..soap import SoapTransport, find, find_text
 
-MTXCA_NS = "http://impl.service.wsmtxca.afip.gob.ar/service/"
+MTXCA_NS = "http://impl.service.wsmtxca.afip.gov.ar/service/"
 
 # MTXCA error raised when a voucher type is not valid for the requested operation.
 ERROR_INVALID_VOUCHER_TYPE = "196"
