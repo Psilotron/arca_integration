@@ -5,19 +5,27 @@ errors (`arrayErrores`) raise `MtxcaError`; system announcements (`evento`)
 are collected in `events` so the caller can show or log them.
 """
 
+import re
 from dataclasses import dataclass, field
 from datetime import date
+from decimal import Decimal
 from xml.sax.saxutils import escape
 
 from lxml import etree
 
 from ..errors import ArcaError
 from ..soap import SoapTransport, find, find_text
+from .requests import voucher_xml
+from .voucher import Voucher
 
 MTXCA_NS = "http://impl.service.wsmtxca.afip.gov.ar/service/"
 
 # MTXCA error raised when a voucher type is not valid for the requested operation.
 ERROR_INVALID_VOUCHER_TYPE = "196"
+# consultarComprobante: ARCA has no voucher with that type, point of sale and number.
+ERROR_VOUCHER_NOT_FOUND = "1503"
+
+_SECRETS_RE = re.compile(r"<(token|sign)>.*?</\1>", re.S)
 
 
 @dataclass(frozen=True)
@@ -45,6 +53,42 @@ class ServerStatus:
 	app_server: str
 	db_server: str
 	auth_server: str
+
+
+@dataclass(frozen=True)
+class Authorization:
+	"""Answer of autorizarComprobante when ARCA authorized the voucher (resultado A or O)."""
+
+	result: str  # A (authorized) or O (authorized with observations)
+	cae: str
+	cae_due_date: date
+	number: int
+	issue_date: date
+	observations: tuple[CodeDescription, ...] = ()
+
+
+@dataclass(frozen=True)
+class AuthorizedVoucher:
+	"""A voucher as ARCA keeps it (consultarComprobante)."""
+
+	voucher_type: int
+	point_of_sale: int
+	number: int
+	issue_date: date | None
+	cae: str
+	cae_due_date: date | None
+	total: Decimal
+	document_type: str
+	document_number: str
+
+
+@dataclass(frozen=True)
+class Exchange:
+	"""One request and its answer, without the WSAA token and sign, for the request log."""
+
+	operation: str
+	request: str
+	response: str = ""
 
 
 class MtxcaError(ArcaError):
@@ -78,6 +122,7 @@ class MtxcaClient:
 	transport: SoapTransport
 	auth: Auth | None = None
 	events: list[CodeDescription] = field(default_factory=list)
+	exchanges: list[Exchange] = field(default_factory=list)
 
 	# Operations without parameters that return an ArrayCodigosDescripcionesType.
 	def voucher_types(self) -> list[CodeDescription]:
@@ -123,6 +168,68 @@ class MtxcaClient:
 			)
 		return result
 
+	def last_authorized(self, voucher_type: int, point_of_sale: int) -> int:
+		"""Number of the last voucher ARCA authorized for this type and point of sale; 0 if none."""
+		response = self._call(
+			"consultarUltimoComprobanteAutorizado",
+			"<consultaUltimoComprobanteAutorizadoRequest>"
+			f"<codigoTipoComprobante>{int(voucher_type)}</codigoTipoComprobante>"
+			f"<numeroPuntoVenta>{int(point_of_sale)}</numeroPuntoVenta>"
+			"</consultaUltimoComprobanteAutorizadoRequest>",
+		)
+		return int(find_text(response, "numeroComprobante") or 0)
+
+	def authorize(self, voucher: Voucher) -> Authorization:
+		"""Request the CAE. Rejections (resultado R) raise `MtxcaError`."""
+		response = self._call("autorizarComprobante", voucher_xml(voucher))
+		result = find_text(response, "resultado") or ""
+		authorized = find(response, "comprobanteResponse")
+		if result not in ("A", "O") or authorized is None:
+			raise MtxcaError([CodeDescription("", f"ARCA answered resultado {result or '-'} without a CAE")])
+		return Authorization(
+			result=result,
+			cae=find_text(authorized, "CAE") or "",
+			cae_due_date=date.fromisoformat(find_text(authorized, "fechaVencimientoCAE")[:10]),
+			number=int(find_text(authorized, "numeroComprobante")),
+			issue_date=date.fromisoformat(find_text(authorized, "fechaEmision")[:10]),
+			observations=tuple(parse_code_descriptions(find(response, "arrayObservaciones"))),
+		)
+
+	def get_voucher(self, voucher_type: int, point_of_sale: int, number: int) -> AuthorizedVoucher | None:
+		"""The voucher ARCA authorized with this type, point of sale and number, or None."""
+		try:
+			response = self._call(
+				"consultarComprobante",
+				"<consultaComprobanteRequest>"
+				f"<codigoTipoComprobante>{int(voucher_type)}</codigoTipoComprobante>"
+				f"<numeroPuntoVenta>{int(point_of_sale)}</numeroPuntoVenta>"
+				f"<numeroComprobante>{int(number)}</numeroComprobante>"
+				"</consultaComprobanteRequest>",
+			)
+		except MtxcaError as exc:
+			if ERROR_VOUCHER_NOT_FOUND in exc.codes:
+				return None
+			raise
+		voucher = find(response, "comprobante")
+		if voucher is None:
+			return None
+
+		def day(name):
+			text = find_text(voucher, name)
+			return date.fromisoformat(text[:10]) if text else None
+
+		return AuthorizedVoucher(
+			voucher_type=int(find_text(voucher, "codigoTipoComprobante")),
+			point_of_sale=int(find_text(voucher, "numeroPuntoVenta")),
+			number=int(find_text(voucher, "numeroComprobante")),
+			issue_date=day("fechaEmision"),
+			cae=find_text(voucher, "codigoAutorizacion") or "",
+			cae_due_date=day("fechaVencimiento"),
+			total=Decimal(find_text(voucher, "importeTotal") or "0"),
+			document_type=find_text(voucher, "codigoTipoDocumento") or "",
+			document_number=find_text(voucher, "numeroDocumento") or "",
+		)
+
 	def dummy(self) -> ServerStatus:
 		"""Health check of ARCA's servers. Needs no authentication."""
 		response = self.transport.call(self.url, "", {"ser": MTXCA_NS}, soap_action="dummy")
@@ -146,11 +253,12 @@ class MtxcaClient:
 			f"<cuitRepresentada>{int(self.auth.cuit)}</cuitRepresentada>"
 			"</authRequest>"
 		)
-		response = self.transport.call(
-			self.url,
-			f"<ser:{operation}Request>{auth}{payload}</ser:{operation}Request>",
-			{"ser": MTXCA_NS},
-			soap_action=operation,
+		body = f"<ser:{operation}Request>{auth}{payload}</ser:{operation}Request>"
+		exchange = Exchange(operation, _SECRETS_RE.sub(r"<\1>***</\1>", body))
+		self.exchanges.append(exchange)
+		response = self.transport.call(self.url, body, {"ser": MTXCA_NS}, soap_action=operation)
+		self.exchanges[-1] = Exchange(
+			operation, exchange.request, etree.tostring(response, encoding="unicode", pretty_print=True)
 		)
 
 		if (event := find(response, "evento")) is not None:

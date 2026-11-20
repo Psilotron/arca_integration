@@ -108,9 +108,6 @@ class TestInvoiceReview(IntegrationTestCase):
 		self.assertEqual((float(voucher["taxed"]), float(voucher["total"])), (100.0, 121.0))
 		self.assertIsNotNone(voucher["service_start"])
 
-		doc.submit()
-		self.assertEqual(doc.docstatus, 1)
-
 	def test_rejected_invoice_cannot_be_submitted(self):
 		frappe.db.set_value("Customer", CUSTOMER, "arca_receiver_vat_condition", None)
 		self.addCleanup(frappe.db.set_value, "Customer", CUSTOMER, "arca_receiver_vat_condition", "1")

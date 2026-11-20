@@ -166,7 +166,14 @@ before_uninstall = "arca_integration.install.before_uninstall"
 
 doc_events = {
 	"Customer": {"validate": "arca_integration.arca.events.customer.validate"},
-	"Sales Invoice": {"before_submit": "arca_integration.arca.invoice.before_submit"},
+	"Sales Invoice": {
+		"before_submit": [
+			"arca_integration.arca.invoice.before_submit",
+			"arca_integration.arca.emission.prepare",
+		],
+		"on_submit": "arca_integration.arca.emission.emit",
+		"before_cancel": "arca_integration.arca.emission.before_cancel",
+	},
 }
 
 # doc_events = {
