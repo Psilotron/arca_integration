@@ -21,12 +21,11 @@ def _amount(value: Decimal) -> str:
 
 
 def _elements(pairs) -> str:
-	"""<name>value</name> for each pair, skipping None, False and empty values (not 0)."""
-	return "".join(
-		f"<{name}>{value}</{name}>"
-		for name, value in pairs
-		if value is not None and value is not False and value != ""
-	)
+	"""<name>value</name> for each pair whose value is not None or "" (0 is kept)."""
+	for name, value in pairs:
+		if not isinstance(value, str | int | None):
+			raise TypeError(f"{name}: {value!r} is not serialized text")
+	return "".join(f"<{name}>{value}</{name}>" for name, value in pairs if value is not None and value != "")
 
 
 def item_xml(item: VoucherItem) -> str:
@@ -38,11 +37,11 @@ def item_xml(item: VoucherItem) -> str:
 				("codigoMtx", escape(item.gtin)),
 				("codigo", escape(item.code[:50])),
 				("descripcion", escape(item.description)),
-				("cantidad", item.quantity is not None and _value(item.quantity)),
+				("cantidad", _value(item.quantity) if item.quantity is not None else None),
 				("codigoUnidadMedida", item.unit),
-				("precioUnitario", item.unit_price is not None and _value(item.unit_price)),
+				("precioUnitario", _value(item.unit_price) if item.unit_price is not None else None),
 				("codigoCondicionIVA", item.vat_condition),
-				("importeIVA", item.vat_amount is not None and _amount(item.vat_amount)),
+				("importeIVA", _amount(item.vat_amount) if item.vat_amount is not None else None),
 				("importeItem", _amount(item.amount)),
 			]
 		)
@@ -86,15 +85,15 @@ def voucher_xml(voucher: Voucher) -> str:
 				("importeNoGravado", _amount(voucher.untaxed)),
 				("importeExento", _amount(voucher.exempt)),
 				("importeSubtotal", _amount(voucher.subtotal)),
-				("importeOtrosTributos", voucher.other_taxes and _amount(voucher.other_taxes_total)),
+				("importeOtrosTributos", _amount(voucher.other_taxes_total) if voucher.other_taxes else None),
 				("importeTotal", _amount(voucher.total)),
 				("codigoMoneda", escape(voucher.currency)),
 				("cotizacionMoneda", _value(voucher.exchange_rate)),
 				("observaciones", escape(voucher.notes)),
 				("codigoConcepto", int(voucher.concept)),
-				("fechaServicioDesde", voucher.service_start and _value(voucher.service_start)),
-				("fechaServicioHasta", voucher.service_end and _value(voucher.service_end)),
-				("fechaVencimientoPago", voucher.payment_due and _value(voucher.payment_due)),
+				("fechaServicioDesde", _value(voucher.service_start) if voucher.service_start else None),
+				("fechaServicioHasta", _value(voucher.service_end) if voucher.service_end else None),
+				("fechaVencimientoPago", _value(voucher.payment_due) if voucher.payment_due else None),
 				("arrayOtrosTributos", other_taxes),
 				("arrayItems", "".join(item_xml(item) for item in voucher.items)),
 				("arraySubtotalesIVA", vat_subtotals),
