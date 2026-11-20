@@ -43,6 +43,12 @@ DEFAULT_ENDPOINTS: Mapping[tuple[Service, Environment], str] = {
 	),
 }
 
+# Service id that WSAA expects in the LoginTicketRequest for each service.
+WSAA_SERVICE_IDS: Mapping[Service, str] = {
+	Service.WSMTXCA: "wsmtxca",
+	Service.PADRON_A5: "ws_sr_padron_a5",
+}
+
 # Verification URL encoded in the invoice QR ("Especificaciones del QR", ARCA).
 # It is the same for every environment.
 QR_BASE_URL = "https://www.arca.gob.ar/fe/qr/"

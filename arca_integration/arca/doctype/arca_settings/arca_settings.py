@@ -6,6 +6,7 @@ from frappe import _
 from frappe.model.document import Document
 
 from arca_integration.services.endpoints import Environment, Service, resolve_endpoint
+from arca_integration.services.soap import SoapTransport
 
 
 class ARCASettings(Document):
@@ -34,3 +35,12 @@ def get_endpoint(service: Service | str, environment: Environment | str) -> str:
 
 def get_request_timeout() -> int:
 	return frappe.get_cached_doc("ARCA Settings").request_timeout or 30
+
+
+def get_transport() -> SoapTransport:
+	"""Transport configured from ARCA Settings.
+
+	`arca_ca_bundle` in site_config.json points to a CA bundle, for ARCA servers
+	that do not send their intermediate certificate.
+	"""
+	return SoapTransport(timeout=get_request_timeout(), verify=frappe.conf.get("arca_ca_bundle") or True)
