@@ -7,14 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 13:47+0000\n"
-"PO-Revision-Date: 2026-11-20 13:47+0000\n"
+"POT-Creation-Date: 2026-11-20 13:57+0000\n"
+"PO-Revision-Date: 2026-11-20 13:57+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language-Team: sistemas@psilotron.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:65
+msgid "ARCA Access Ticket"
+msgstr ""
 
 #. Name of a DocType
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:162
@@ -26,7 +31,15 @@ msgstr ""
 msgid "ARCA Endpoint Override"
 msgstr ""
 
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:91
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:94
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:96
+msgid "ARCA Login"
+msgstr ""
+
+#. Label of the service (Data) field in DocType 'ARCA Access Ticket'
 #. Label of the service (Select) field in DocType 'ARCA Endpoint Override'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:37
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:17
 msgid "ARCA Service"
 msgstr ""
@@ -34,6 +47,15 @@ msgstr ""
 #. Name of a DocType
 #: arca_integration/arca/doctype/arca_settings/arca_settings.json:38
 msgid "ARCA Settings"
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:89
+msgid "ARCA already issued an access ticket for this certificate and service, but this site did not keep it. Try again when it expires (up to 12 hours) or use a new certificate."
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:94
+#, python-brace-format
+msgid "ARCA rejected the login: {0}"
 msgstr ""
 
 #. Name of a role
@@ -101,7 +123,9 @@ msgstr ""
 msgid "Commercial Address"
 msgstr ""
 
+#. Label of the company (Link) field in DocType 'ARCA Access Ticket'
 #. Label of the company (Link) field in DocType 'ARCA Company Settings'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:21
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:36
 msgid "Company"
 msgstr ""
@@ -111,11 +135,23 @@ msgstr ""
 msgid "Company {0} has no certificate and private key for {1}."
 msgstr ""
 
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:96
+#, python-brace-format
+msgid "Could not connect to ARCA: {0}"
+msgstr ""
+
+#. Label of the environment (Select) field in DocType 'ARCA Access Ticket'
 #. Label of the environment (Select) field in DocType 'ARCA Company Settings'
 #. Label of the environment (Select) field in DocType 'ARCA Endpoint Override'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:29
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:59
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:25
 msgid "Environment"
+msgstr ""
+
+#. Label of the expires_at (Datetime) field in DocType 'ARCA Access Ticket'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:44
+msgid "Expires At"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:58
@@ -137,10 +173,12 @@ msgstr ""
 msgid "Gross Income Number (IIBB)"
 msgstr ""
 
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Access Ticket'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Company
 #. Settings'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
 #. Override'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
 msgid "Homologation"
@@ -178,10 +216,12 @@ msgstr ""
 msgid "Private Key"
 msgstr ""
 
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Access Ticket'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Company
 #. Settings'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
 #. Override'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
 msgid "Production"
@@ -198,12 +238,12 @@ msgstr ""
 msgid "Request Timeout (seconds)"
 msgstr ""
 
-#: arca_integration/arca/doctype/arca_settings/arca_settings.py:25
+#: arca_integration/arca/doctype/arca_settings/arca_settings.py:26
 #, python-brace-format
 msgid "Row {0}: the URL must start with https://."
 msgstr ""
 
-#: arca_integration/arca/doctype/arca_settings/arca_settings.py:18
+#: arca_integration/arca/doctype/arca_settings/arca_settings.py:19
 #, python-brace-format
 msgid "Row {0}: there is already an override for {1} in {2}."
 msgstr ""
@@ -219,6 +259,11 @@ msgstr ""
 msgid "Set up ARCA Company Settings for {0}."
 msgstr ""
 
+#. Label of the sign (Password) field in DocType 'ARCA Access Ticket'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:56
+msgid "Sign"
+msgstr ""
+
 #. Description of the 'Private Key' (Password) field in DocType 'ARCA Company
 #. Settings'
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:102
@@ -226,6 +271,7 @@ msgid "Stored encrypted. It is never displayed or downloaded."
 msgstr ""
 
 #. Name of a role
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:71
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:174
 #: arca_integration/arca/doctype/arca_settings/arca_settings.json:49
 msgid "System Manager"
@@ -255,6 +301,11 @@ msgstr ""
 msgid "This replaces the current {0} private key and clears its certificate. Continue?"
 msgstr ""
 
+#. Label of the token (Password) field in DocType 'ARCA Access Ticket'
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:50
+msgid "Token"
+msgstr ""
+
 #. Label of the url (Data) field in DocType 'ARCA Endpoint Override'
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:33
 msgid "URL"
@@ -268,6 +319,11 @@ msgstr ""
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:51
 #, python-brace-format
 msgid "Upload the downloaded CSR to ARCA, then paste the certificate it returns in {0}."
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:4
+msgid "WSAA access tickets kept between requests. ARCA refuses a new login while a ticket is valid, so do not delete valid tickets."
 msgstr ""
 
 #. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
