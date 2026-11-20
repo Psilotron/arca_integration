@@ -1,0 +1,13 @@
+[
+ {"code": "1", "description": "Factura A"},
+ {"code": "2", "description": "Nota de Débito A"},
+ {"code": "3", "description": "Nota de Crédito A"},
+ {"code": "6", "description": "Factura B"},
+ {"code": "7", "description": "Nota de Débito B"},
+ {"code": "8", "description": "Nota de Crédito B"},
+ {"code": "51", "description": "Factura A con leyenda OPERACIÓN SUJETA A RETENCIÓN"},
+ {"code": "52", "description": "Nota de Débito A con leyenda OPERACIÓN SUJETA A RETENCIÓN"},
+ {"code": "53", "description": "Nota de Crédito A con leyenda OPERACIÓN SUJETA A RETENCIÓN"},
+ {"code": "88", "description": "Remito Electrónico de Tabaco Acondicionado (sólo para comprobantes asociados)"},
+ {"code": "990", "description": "Remito Electrónico de Tabaco en Hebras (sólo para comprobantes asociados)"}
+]

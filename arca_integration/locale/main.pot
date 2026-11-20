@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 13:57+0000\n"
-"PO-Revision-Date: 2026-11-20 13:57+0000\n"
+"POT-Creation-Date: 2026-11-20 14:23+0000\n"
+"PO-Revision-Date: 2026-11-20 14:23+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language-Team: sistemas@psilotron.com\n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
+#. Description of the 'VAT Rate' (Percent) field in DocType 'ARCA VAT
+#. Condition'
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:39
+msgid "0 for non-taxed and exempt items too: tell them apart by code."
+msgstr ""
+
 #. Name of a DocType
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:65
 msgid "ARCA Access Ticket"
 msgstr ""
 
+#: arca_integration/arca/catalogs.py:176
+msgid "ARCA Announcement"
+msgstr ""
+
 #. Name of a DocType
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:162
 msgid "ARCA Company Settings"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:43
+msgid "ARCA Currency"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:43
+msgid "ARCA Document Type"
 msgstr ""
 
 #. Name of a DocType
@@ -35,6 +55,21 @@ msgstr ""
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:94
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:96
 msgid "ARCA Login"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:74
+msgid "ARCA Point of Sale"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:51
+msgid "ARCA Receiver VAT Condition"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_receiver_vat_condition_voucher_type/arca_receiver_vat_condition_voucher_type.json:25
+msgid "ARCA Receiver VAT Condition Voucher Type"
 msgstr ""
 
 #. Label of the service (Data) field in DocType 'ARCA Access Ticket'
@@ -49,8 +84,56 @@ msgstr ""
 msgid "ARCA Settings"
 msgstr ""
 
+#: arca_integration/arca/catalogs.py:187 arca_integration/arca/catalogs.py:189
+msgid "ARCA Sync"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:43
+msgid "ARCA Tax Type"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:43
+msgid "ARCA Unit of Measure"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:51
+msgid "ARCA VAT Condition"
+msgstr ""
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:43
+msgid "ARCA Voucher Type"
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:89
 msgid "ARCA already issued an access ticket for this certificate and service, but this site did not keep it. Try again when it expires (up to 12 hours) or use a new certificate."
+msgstr ""
+
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Currency'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Document Type'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Receiver VAT
+#. Condition'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Tax Type'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Unit of
+#. Measure'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA VAT Condition'
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Voucher Type'
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:32
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:32
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:33
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:32
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:32
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:33
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:32
+msgid "ARCA no longer returns this code. Kept because documents may still refer to it."
+msgstr ""
+
+#. Description of the 'Disabled' (Check) field in DocType 'ARCA Point of Sale'
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:63
+msgid "ARCA no longer returns this point of sale. Kept because documents may still refer to it."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:94
@@ -58,9 +141,34 @@ msgstr ""
 msgid "ARCA rejected the login: {0}"
 msgstr ""
 
+#: arca_integration/arca/catalogs.py:187
+#, python-brace-format
+msgid "ARCA rejected the request: {0}"
+msgstr ""
+
 #. Name of a role
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:184
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:65
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:65
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:95
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:73
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:65
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:65
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:73
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:65
 msgid "Accounts Manager"
+msgstr ""
+
+#. Name of a role
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:74
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:74
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:104
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:82
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:74
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:74
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:82
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:74
+msgid "Accounts User"
 msgstr ""
 
 #. Label of the activity_start_date (Date) field in DocType 'ARCA Company
@@ -69,8 +177,17 @@ msgstr ""
 msgid "Activity Start Date"
 msgstr ""
 
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
+msgid "Added"
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:34
 msgid "Alias registered in ARCA for this certificate. Letters, numbers, hyphens and underscores only."
+msgstr ""
+
+#. Label of the blocked (Check) field in DocType 'ARCA Point of Sale'
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:53
+msgid "Blocked"
 msgstr ""
 
 #. Label of the cuit (Data) field in DocType 'ARCA Company Settings'
@@ -81,6 +198,14 @@ msgstr ""
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:36
 #, python-brace-format
 msgid "CUIT {0} is not valid."
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
+msgid "Catalog"
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:45
+msgid "Catalogs Synced"
 msgstr ""
 
 #. Label of the homologation_certificate (Long Text) field in DocType 'ARCA
@@ -117,6 +242,23 @@ msgstr ""
 msgid "Certificate issued by ARCA for the CSR generated from this form."
 msgstr ""
 
+#. Label of the code (Data) field in DocType 'ARCA Currency'
+#. Label of the code (Data) field in DocType 'ARCA Document Type'
+#. Label of the code (Data) field in DocType 'ARCA Receiver VAT Condition'
+#. Label of the code (Data) field in DocType 'ARCA Tax Type'
+#. Label of the code (Data) field in DocType 'ARCA Unit of Measure'
+#. Label of the code (Data) field in DocType 'ARCA VAT Condition'
+#. Label of the code (Data) field in DocType 'ARCA Voucher Type'
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:18
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:18
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:19
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:18
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:18
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:19
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:18
+msgid "Code"
+msgstr ""
+
 #. Label of the commercial_address (Link) field in DocType 'ARCA Company
 #. Settings'
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:86
@@ -125,8 +267,11 @@ msgstr ""
 
 #. Label of the company (Link) field in DocType 'ARCA Access Ticket'
 #. Label of the company (Link) field in DocType 'ARCA Company Settings'
+#. Label of the company (Link) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:21
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:36
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:22
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:11
 msgid "Company"
 msgstr ""
 
@@ -135,17 +280,68 @@ msgstr ""
 msgid "Company {0} has no certificate and private key for {1}."
 msgstr ""
 
+#: arca_integration/arca/catalogs.py:189
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:96
 #, python-brace-format
 msgid "Could not connect to ARCA: {0}"
 msgstr ""
 
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:5
+msgid "Currencies (consultarMonedas)."
+msgstr ""
+
+#. Label of the deactivated_on (Date) field in DocType 'ARCA Point of Sale'
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:59
+msgid "Deactivated On"
+msgstr ""
+
+#. Label of the description (Data) field in DocType 'ARCA Currency'
+#. Label of the description (Data) field in DocType 'ARCA Document Type'
+#. Label of the description (Data) field in DocType 'ARCA Receiver VAT
+#. Condition'
+#. Label of the description (Data) field in DocType 'ARCA Tax Type'
+#. Label of the description (Data) field in DocType 'ARCA Unit of Measure'
+#. Label of the description (Data) field in DocType 'ARCA VAT Condition'
+#. Label of the description (Data) field in DocType 'ARCA Voucher Type'
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:27
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:27
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:28
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:27
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:27
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:28
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:27
+msgid "Description"
+msgstr ""
+
+#. Label of the disabled (Check) field in DocType 'ARCA Currency'
+#. Label of the disabled (Check) field in DocType 'ARCA Document Type'
+#. Label of the disabled (Check) field in DocType 'ARCA Point of Sale'
+#. Label of the disabled (Check) field in DocType 'ARCA Receiver VAT Condition'
+#. Label of the disabled (Check) field in DocType 'ARCA Tax Type'
+#. Label of the disabled (Check) field in DocType 'ARCA Unit of Measure'
+#. Label of the disabled (Check) field in DocType 'ARCA VAT Condition'
+#. Label of the disabled (Check) field in DocType 'ARCA Voucher Type'
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:35
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:35
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:66
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:36
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:35
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:35
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:36
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:35
+msgid "Disabled"
+msgstr ""
+
 #. Label of the environment (Select) field in DocType 'ARCA Access Ticket'
 #. Label of the environment (Select) field in DocType 'ARCA Company Settings'
 #. Label of the environment (Select) field in DocType 'ARCA Endpoint Override'
+#. Label of the environment (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:29
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:59
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:25
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:40
 msgid "Environment"
 msgstr ""
 
@@ -178,9 +374,11 @@ msgstr ""
 #. Settings'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
 #. Override'
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:41
 msgid "Homologation"
 msgstr ""
 
@@ -190,16 +388,35 @@ msgstr ""
 msgid "Homologation Credentials"
 msgstr ""
 
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:5
+msgid "Identity document types accepted by WSMTXCA (consultarTiposDocumento)."
+msgstr ""
+
 #. Label of the issuer_section (Section Break) field in DocType 'ARCA Company
 #. Settings'
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:67
 msgid "Issuer Data"
 msgstr ""
 
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:14
+msgid "Its credentials are used to query ARCA. Catalogs are shared by all companies; points of sale are synced for this company only."
+msgstr ""
+
 #. Description of the 'Service URLs' (Section Break) field in DocType 'ARCA
 #. Settings'
 #: arca_integration/arca/doctype/arca_settings/arca_settings.json:21
 msgid "Leave empty to use the official ARCA URLs. Add a row only when ARCA announces a new URL before this app is updated."
+msgstr ""
+
+#. Label of the number (Int) field in DocType 'ARCA Point of Sale'
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:31
+msgid "Number"
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:4
+msgid "Points of sale enabled for CAE in WSMTXCA (consultarPuntosVentaCAE), per company and environment."
 msgstr ""
 
 #. Description of the 'Issuer Data' (Section Break) field in DocType 'ARCA
@@ -221,9 +438,11 @@ msgstr ""
 #. Settings'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
 #. Override'
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:41
 msgid "Production"
 msgstr ""
 
@@ -231,6 +450,10 @@ msgstr ""
 #. Company Settings'
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:127
 msgid "Production Credentials"
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:24
+msgid "Querying ARCA..."
 msgstr ""
 
 #. Label of the request_timeout (Int) field in DocType 'ARCA Settings'
@@ -270,11 +493,33 @@ msgstr ""
 msgid "Stored encrypted. It is never displayed or downloaded."
 msgstr ""
 
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:6
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:27
+msgid "Sync Catalogs"
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:28
+msgid "Sync Now"
+msgstr ""
+
 #. Name of a role
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:71
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:174
+#: arca_integration/arca/doctype/arca_currency/arca_currency.json:55
+#: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:55
+#: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:85
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:63
 #: arca_integration/arca/doctype/arca_settings/arca_settings.json:49
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:55
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:55
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:63
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:55
 msgid "System Manager"
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:5
+msgid "Tax types other than VAT (consultarTiposTributo)."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:117
@@ -316,9 +561,50 @@ msgstr ""
 msgid "URL Overrides"
 msgstr ""
 
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:5
+msgid "Units of measure (consultarUnidadesMedida)."
+msgstr ""
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
+msgid "Updated"
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:51
 #, python-brace-format
 msgid "Upload the downloaded CSR to ARCA, then paste the certificate it returns in {0}."
+msgstr ""
+
+#. Label of the rate (Percent) field in DocType 'ARCA VAT Condition'
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:42
+msgid "VAT Rate"
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:5
+msgid "VAT conditions of an invoice item (consultarCondicionesIVA)."
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:5
+msgid "VAT conditions of the receiver, with the voucher types that accept each one (consultarCondicionesIVAReceptor, RG 5616)."
+msgstr ""
+
+#. Label of the voucher_type (Link) field in DocType 'ARCA Receiver VAT
+#. Condition Voucher Type'
+#: arca_integration/arca/doctype/arca_receiver_vat_condition_voucher_type/arca_receiver_vat_condition_voucher_type.json:15
+msgid "Voucher Type"
+msgstr ""
+
+#. Label of the voucher_types (Table MultiSelect) field in DocType 'ARCA
+#. Receiver VAT Condition'
+#: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:41
+msgid "Voucher Types"
+msgstr ""
+
+#. Description of a DocType
+#: arca_integration/arca/doctype/arca_voucher_type/arca_voucher_type.json:5
+msgid "Voucher types enabled in WSMTXCA (consultarTiposComprobante)."
 msgstr ""
 
 #. Description of a DocType
