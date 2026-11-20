@@ -1,0 +1,8 @@
+[
+ {"code": "1", "description": "No gravado"},
+ {"code": "2", "description": "Exento"},
+ {"code": "3", "description": "0%"},
+ {"code": "4", "description": "10.5%"},
+ {"code": "5", "description": "21%"},
+ {"code": "6", "description": "27%"}
+]

@@ -96,7 +96,8 @@ required_apps = ["erpnext"]
 # ------------
 
 # before_install = "arca_integration.install.before_install"
-# after_install = "arca_integration.install.after_install"
+after_install = "arca_integration.arca.catalogs.seed_catalogs"
+after_migrate = "arca_integration.arca.catalogs.seed_catalogs"
 
 # Uninstallation
 # ------------
@@ -169,6 +170,10 @@ required_apps = ["erpnext"]
 
 # Scheduled Tasks
 # ---------------
+
+scheduler_events = {
+	"daily": ["arca_integration.arca.catalogs.scheduled_sync"],
+}
 
 # scheduler_events = {
 # 	"all": [

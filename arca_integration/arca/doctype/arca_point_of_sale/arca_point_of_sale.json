@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "creation": "2026-11-20 12:00:00.000000",
+ "description": "Points of sale enabled for CAE in WSMTXCA (consultarPuntosVentaCAE), per company and environment.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "number",
+  "environment",
+  "column_break_status",
+  "blocked",
+  "deactivated_on",
+  "disabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "number",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Number",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Environment",
+   "options": "Homologation\nProduction",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_status",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "blocked",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Blocked",
+   "read_only": 1
+  },
+  {
+   "fieldname": "deactivated_on",
+   "fieldtype": "Date",
+   "label": "Deactivated On",
+   "read_only": 1
+  },
+  {
+   "description": "ARCA no longer returns this point of sale. Kept because documents may still refer to it.",
+   "fieldname": "disabled",
+   "fieldtype": "Check",
+   "label": "Disabled"
+  }
+ ],
+ "in_create": 1,
+ "links": [],
+ "modified": "2026-11-20 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ARCA",
+ "name": "ARCA Point of Sale",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "share": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "number",
+ "track_changes": 1
+}
