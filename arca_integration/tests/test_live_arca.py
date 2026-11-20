@@ -54,3 +54,7 @@ class TestLiveArca(IntegrationTestCase):
 		codes = {entry.code for entry in get_mtxca_client(self.company).voucher_types()}
 		self.assertIn("1", codes)
 		self.assertIn("6", codes)
+
+	def test_last_authorized_invoice_a(self):
+		number = get_mtxca_client(self.company).last_authorized(1, 1)
+		self.assertGreaterEqual(number, 0)

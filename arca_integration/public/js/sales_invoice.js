@@ -8,8 +8,17 @@ frappe.ui.form.on("Sales Invoice", {
 	refresh(frm) {
 		frm.__arca_review = null;
 		arca.clear_review(frm);
+		if (frm.doc.docstatus === 1 && frm.doc.arca_cae) return arca.render_authorized(frm);
 		if (frm.doc.docstatus !== 0 || frm.is_new()) return;
 		arca.load_review(frm);
+	},
+
+	on_submit(frm) {
+		if (!frm.doc.arca_cae) return;
+		frappe.show_alert({
+			message: __("Authorized by ARCA · CAE {0}", [frm.doc.arca_cae]),
+			indicator: "green",
+		});
 	},
 
 	before_submit(frm) {
@@ -34,6 +43,23 @@ arca.load_review = function (frm) {
 arca.clear_review = function (frm) {
 	frm.layout.message.find(".arca-review").remove();
 	if (!frm.layout.message.children().length) frm.layout.message.addClass("hidden");
+};
+
+arca.render_authorized = function (frm) {
+	const doc = frm.doc;
+	const number = `${String(doc.arca_point_of_sale || "").slice(-5)}-${String(
+		doc.arca_voucher_number
+	).padStart(8, "0")}`;
+	frm.dashboard
+		.set_headline(
+			`✓ ${__("Authorized by ARCA")} · ${frappe.utils.escape_html(number)} · ${__(
+				"CAE {0}, due {1}",
+				[doc.arca_cae, frappe.datetime.str_to_user(doc.arca_cae_due_date)]
+			)}`,
+			"green",
+			true
+		)
+		.addClass("arca-review");
 };
 
 arca.render_review = function (frm, review) {
@@ -111,7 +137,10 @@ arca.confirm_preview = function (frm) {
 				title: __("ARCA Preview"),
 				size: "large",
 				fields: [{ fieldtype: "HTML", fieldname: "preview" }],
-				primary_action_label: __("Submit"),
+				primary_action_label:
+					review.environment === "Homologation"
+						? __("Submit and request test CAE")
+						: __("Submit and request CAE"),
 				primary_action() {
 					dialog.__confirmed = true;
 					dialog.hide();
