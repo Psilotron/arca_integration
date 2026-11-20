@@ -22,7 +22,7 @@ from arca_integration.arca.doctype.arca_access_ticket.arca_access_ticket import 
 from arca_integration.arca.invoice import CONCEPT_LABELS, applies, review
 from arca_integration.arca.mtxca import get_mtxca_client
 from arca_integration.services.endpoints import Service
-from arca_integration.services.errors import ArcaError, TransportTimeout
+from arca_integration.services.errors import ArcaError, ServiceFault, TransportTimeout
 from arca_integration.services.mtxca.client import AuthorizedVoucher, MtxcaClient, MtxcaError
 from arca_integration.services.mtxca.messages import explain
 from arca_integration.services.mtxca.voucher import Voucher
@@ -52,8 +52,8 @@ def emit(doc, method=None) -> None:
 	with filelock(lock, timeout=60):
 		try:
 			last = client.last_authorized(voucher.voucher_type, voucher.point_of_sale)
-			if last > _last_known(doc, settings, voucher):
-				_recover(client, doc, settings, voucher, last)
+			known = _last_known(doc, settings, voucher)
+			if last > known and _recover(client, doc, settings, voucher, last, first_use=not known):
 				return
 			_authorize(client, doc, settings, replace(voucher, number=last + 1))
 		except ArcaError as exc:
@@ -78,8 +78,14 @@ def _last_known(doc, settings, voucher: Voucher) -> int:
 	return int(numbers[0] or 0) if numbers else 0
 
 
-def _recover(client: MtxcaClient, doc, settings, voucher: Voucher, number: int) -> None:
-	"""ARCA has a voucher this site never recorded: adopt it if it is this invoice."""
+def _recover(client: MtxcaClient, doc, settings, voucher: Voucher, number: int, first_use: bool) -> bool:
+	"""ARCA has a voucher this site never recorded. Adopt it if it is this invoice (True).
+
+	Otherwise, the first time this site uses the point of sale and voucher type,
+	the earlier vouchers came from another system or an earlier installation:
+	numbering continues after them (False). Later on, a foreign voucher means
+	another system is using the point of sale, so the submit stops.
+	"""
 	found = client.get_voucher(voucher.voucher_type, voucher.point_of_sale, number)
 	if found and _same_voucher(found, voucher):
 		_record(doc, settings, voucher, found.number, found.cae, found.cae_due_date)
@@ -89,7 +95,9 @@ def _recover(client: MtxcaClient, doc, settings, voucher: Voucher, number: int) 
 			indicator="green",
 			alert=True,
 		)
-		return
+		return True
+	if first_use:
+		return False
 
 	_log(doc, settings, client, FAILED, _voucher_id(voucher, number), message="numbering out of sync")
 	frappe.throw(
@@ -159,16 +167,33 @@ def _record(doc, settings, voucher: Voucher, number: int, cae: str, cae_due_date
 
 
 def _fail(client: MtxcaClient, doc, settings, exc: ArcaError) -> None:
-	_log(doc, settings, client, FAILED, "", message=f"{type(exc).__name__}: {exc.message}")
+	_log(
+		doc,
+		settings,
+		client,
+		FAILED,
+		"",
+		message=f"{type(exc).__name__}: {exc.message}\n{getattr(exc, 'detail', '') or ''}".strip(),
+	)
 	if isinstance(exc, MtxcaError):
 		frappe.throw(_rejection_message(exc), title=_("ARCA"))
-	if isinstance(exc, TransportTimeout):
+	if isinstance(exc, ServiceFault):
+		message = _("ARCA answered with a technical error, so the invoice was not submitted: {0}").format(
+			frappe.utils.escape_html(exc.message)
+		)
+	elif isinstance(exc, TransportTimeout):
 		message = _(
 			"ARCA did not answer in time and it could not be confirmed whether it authorized the invoice. The invoice was not submitted. When you try again, this site first asks ARCA and recovers the CAE if it was issued."
 		)
 	else:
 		message = _("ARCA is not responding. Your invoice was not submitted; try again in a few minutes.")
-	frappe.throw(message, title=_("ARCA"))
+	detail = frappe.utils.escape_html(
+		f"{type(exc).__name__}: {exc.message} {getattr(exc, 'detail', '') or ''}"
+	)
+	frappe.throw(
+		f"{message}<details class='mt-2 small text-muted'><summary>{_('Technical detail')}</summary>{detail}</details>",
+		title=_("ARCA"),
+	)
 
 
 def _rejection_message(exc: MtxcaError) -> str:
@@ -215,7 +240,8 @@ def _insert_and_commit(values: dict) -> None:
 	log = frappe.get_doc(values)
 	log.flags.ignore_links = True  # an invoice created in the same request was rolled back too
 	log.insert(ignore_permissions=True)
-	frappe.db.commit()  # nosemgrep: the submit rolled back; the log must survive it
+	if not frappe.flags.in_test:
+		frappe.db.commit()  # nosemgrep: the submit rolled back; the log must survive it
 
 
 # ---- doc_events ----

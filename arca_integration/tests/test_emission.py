@@ -91,15 +91,36 @@ class TestEmission(TestInvoiceReview):
 
 	def test_foreign_voucher_stops_the_submit(self):
 		doc = self.make_invoice()
-		number = self.last_known() + 1
-		self.client.last_authorized.return_value = number
+		self.client.last_authorized.return_value = 6
 		self.client.get_voucher.return_value = AuthorizedVoucher(
-			1, 1, number, date.today(), CAE, None, Decimal("999.00"), "80", "30500001735"
+			1, 1, 6, date.today(), CAE, None, Decimal("999.00"), "80", "30500001735"
 		)
-		with self.assertRaises(frappe.ValidationError) as ctx:
+		with (
+			patch.object(emission, "_last_known", return_value=5),
+			self.assertRaises(frappe.ValidationError) as ctx,
+		):
 			doc.submit()
 		self.assertIn("Another system", str(ctx.exception))
 		self.client.authorize.assert_not_called()
+
+	def test_first_use_continues_after_earlier_vouchers(self):
+		"""Vouchers issued before this site used the point of sale (e.g. by another app)."""
+		doc = self.make_invoice()
+		self.client.last_authorized.return_value = 8
+		self.client.get_voucher.return_value = None  # homologation may not find its own last voucher
+		with patch.object(emission, "_last_known", return_value=0):
+			doc.submit()
+		self.assertEqual(self.client.authorize.call_args.args[0].number, 9)
+
+	def test_technical_error_is_not_called_an_outage(self):
+		from arca_integration.services.errors import ServiceFault
+
+		doc = self.make_invoice()
+		self.client.last_authorized.side_effect = ServiceFault("soap:Client", "Elemento inválido")
+		with self.assertRaises(frappe.ValidationError) as ctx:
+			doc.submit()
+		self.assertIn("technical error", str(ctx.exception))
+		self.assertIn("Elemento inválido", str(ctx.exception))
 
 	def test_timeout_asks_arca_before_failing(self):
 		doc = self.make_invoice()
