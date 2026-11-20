@@ -1,0 +1,193 @@
+{
+ "actions": [],
+ "autoname": "field:company",
+ "creation": "2026-11-20 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "cuit",
+  "column_break_company",
+  "environment",
+  "issuer_section",
+  "gross_income_number",
+  "activity_start_date",
+  "column_break_issuer",
+  "commercial_address",
+  "homologation_section",
+  "homologation_certificate",
+  "homologation_private_key",
+  "homologation_column_break",
+  "homologation_certificate_subject",
+  "homologation_certificate_expiry",
+  "production_section",
+  "production_certificate",
+  "production_private_key",
+  "production_column_break",
+  "production_certificate_subject",
+  "production_certificate_expiry"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "company.tax_id",
+   "fetch_if_empty": 1,
+   "fieldname": "cuit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "CUIT",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_company",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Homologation",
+   "fieldname": "environment",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Environment",
+   "options": "Homologation\nProduction",
+   "reqd": 1
+  },
+  {
+   "description": "Printed on the invoice.",
+   "fieldname": "issuer_section",
+   "fieldtype": "Section Break",
+   "label": "Issuer Data"
+  },
+  {
+   "fieldname": "gross_income_number",
+   "fieldtype": "Data",
+   "label": "Gross Income Number (IIBB)"
+  },
+  {
+   "fieldname": "activity_start_date",
+   "fieldtype": "Date",
+   "label": "Activity Start Date"
+  },
+  {
+   "fieldname": "column_break_issuer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "commercial_address",
+   "fieldtype": "Link",
+   "label": "Commercial Address",
+   "options": "Address"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "homologation_section",
+   "fieldtype": "Section Break",
+   "label": "Homologation Credentials"
+  },
+  {
+   "description": "Certificate issued by ARCA for the CSR generated from this form.",
+   "fieldname": "homologation_certificate",
+   "fieldtype": "Long Text",
+   "label": "Certificate (PEM)"
+  },
+  {
+   "description": "Stored encrypted. It is never displayed or downloaded.",
+   "fieldname": "homologation_private_key",
+   "fieldtype": "Password",
+   "label": "Private Key"
+  },
+  {
+   "fieldname": "homologation_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "homologation_certificate_subject",
+   "fieldtype": "Small Text",
+   "label": "Certificate Subject",
+   "read_only": 1
+  },
+  {
+   "fieldname": "homologation_certificate_expiry",
+   "fieldtype": "Datetime",
+   "label": "Certificate Expiry",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "production_section",
+   "fieldtype": "Section Break",
+   "label": "Production Credentials"
+  },
+  {
+   "description": "Certificate issued by ARCA for the CSR generated from this form.",
+   "fieldname": "production_certificate",
+   "fieldtype": "Long Text",
+   "label": "Certificate (PEM)"
+  },
+  {
+   "description": "Stored encrypted. It is never displayed or downloaded.",
+   "fieldname": "production_private_key",
+   "fieldtype": "Password",
+   "label": "Private Key"
+  },
+  {
+   "fieldname": "production_column_break",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "production_certificate_subject",
+   "fieldtype": "Small Text",
+   "label": "Certificate Subject",
+   "read_only": 1
+  },
+  {
+   "fieldname": "production_certificate_expiry",
+   "fieldtype": "Datetime",
+   "label": "Certificate Expiry",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-11-20 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "ARCA",
+ "name": "ARCA Company Settings",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "company",
+ "track_changes": 1
+}
