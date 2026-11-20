@@ -104,3 +104,12 @@ jobs:
           bench --site test_site run-tests --app arca_integration
         env:
           TYPE: server
+
+      - name: Check translation files are up to date
+        working-directory: /home/runner/frappe-bench
+        run: |
+          bench generate-pot-file --app arca_integration
+          bench update-po-files --app arca_integration
+          cd apps/arca_integration
+          git add --intent-to-add arca_integration/locale
+          git diff --exit-code -I'^(#|"(POT-Creation-Date|PO-Revision-Date|Generated-By): )' -- arca_integration/locale
