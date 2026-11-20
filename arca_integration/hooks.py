@@ -96,13 +96,13 @@ required_apps = ["erpnext"]
 # ------------
 
 # before_install = "arca_integration.install.before_install"
-after_install = "arca_integration.arca.catalogs.seed_catalogs"
-after_migrate = "arca_integration.arca.catalogs.seed_catalogs"
+after_install = "arca_integration.install.after_install"
+after_migrate = "arca_integration.install.after_migrate"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "arca_integration.uninstall.before_uninstall"
+before_uninstall = "arca_integration.install.before_uninstall"
 # after_uninstall = "arca_integration.uninstall.after_uninstall"
 
 # Integration Setup
@@ -159,6 +159,10 @@ after_migrate = "arca_integration.arca.catalogs.seed_catalogs"
 # Document Events
 # ---------------
 # Hook on document methods and events
+
+doc_events = {
+	"Customer": {"validate": "arca_integration.arca.events.customer.validate"},
+}
 
 # doc_events = {
 # 	"*": {

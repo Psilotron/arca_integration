@@ -14,6 +14,8 @@
   "activity_start_date",
   "column_break_issuer",
   "commercial_address",
+  "defaults_section",
+  "default_vat_condition",
   "homologation_section",
   "homologation_certificate",
   "homologation_private_key",
@@ -85,6 +87,18 @@
    "fieldtype": "Link",
    "label": "Commercial Address",
    "options": "Address"
+  },
+  {
+   "fieldname": "defaults_section",
+   "fieldtype": "Section Break",
+   "label": "Defaults"
+  },
+  {
+   "description": "Used for items whose Item Tax Template has no ARCA VAT Condition.",
+   "fieldname": "default_vat_condition",
+   "fieldtype": "Link",
+   "label": "Default VAT Condition",
+   "options": "ARCA VAT Condition"
   },
   {
    "collapsible": 1,
