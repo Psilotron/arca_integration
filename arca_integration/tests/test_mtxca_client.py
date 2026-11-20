@@ -1,4 +1,5 @@
 from datetime import date
+from decimal import Decimal as D
 from pathlib import Path
 
 from frappe.tests import UnitTestCase
@@ -240,3 +241,55 @@ class TestVoucherContract(TestMtxcaContract):
 	def direct_children(self, type_name):
 		sequence = self.types[type_name].find(f"{XSD}sequence")
 		return [e.get("name") for e in sequence.findall(f"{XSD}element")]
+
+
+class TestRequestsValidateAgainstXsd(UnitTestCase):
+	"""Validate full requests (names, order and values) with the XSD inside ARCA's WSDL."""
+
+	@classmethod
+	def setUpClass(cls):
+		super().setUpClass()
+		from lxml import etree
+
+		schema = parse_xml(WSDL.read_bytes()).find(f".//{XSD}schema")
+		# The schema uses the WSDL's `tns` prefix: declare it on the standalone copy.
+		text = etree.tostring(schema, encoding="unicode")
+		if "xmlns:tns=" not in text.split(">", 1)[0]:
+			namespace = schema.get("targetNamespace")
+			text = text.replace("<xsd:schema ", f'<xsd:schema xmlns:tns="{namespace}" ', 1)
+		cls.xsd = etree.XMLSchema(etree.fromstring(text))
+
+	def assertValid(self, voucher):
+		calls = []
+		client(AUTHORIZED, calls).authorize(voucher)
+		request = parse_xml(calls[0]["body"].encode()).find(".//{*}Body")[0]
+		self.assertTrue(self.xsd.validate(request), self.xsd.error_log)
+
+	def test_invoice_a_without_other_taxes(self):
+		from dataclasses import replace
+
+		from arca_integration.services.mtxca.builder import review
+		from arca_integration.tests.test_mtxca_builder import RULES, draft, vat
+
+		voucher = review(draft(taxes=(vat("21"),), grand_total=D("121")), RULES).voucher
+		self.assertValid(replace(voucher, number=2))
+
+	def test_invoice_a_with_other_taxes(self):
+		self.assertValid(manual_invoice_a())
+
+	def test_invoice_b_for_services(self):
+		from dataclasses import replace
+
+		from arca_integration.services.mtxca.builder import review
+		from arca_integration.tests.test_mtxca_builder import FINAL_CONSUMER, RULES, draft, line, vat
+
+		voucher = review(
+			draft(
+				receiver=FINAL_CONSUMER,
+				lines=(line(1, "100", "5", stock=False, quantity=D(3)), line(2, "50", "2", stock=False)),
+				taxes=(vat("21"),),
+				grand_total=D("171"),
+			),
+			RULES,
+		).voucher
+		self.assertValid(replace(voucher, number=1))
