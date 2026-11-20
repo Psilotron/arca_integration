@@ -1,0 +1,294 @@
+# Spanish translations for ARCA Integration.
+# Copyright (C) 2026 Psilotron
+# This file is distributed under the same license as the ARCA Integration project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ARCA Integration VERSION\n"
+"Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
+"POT-Creation-Date: 2026-11-20 13:47+0000\n"
+"PO-Revision-Date: 2026-11-20 13:30+0000\n"
+"Last-Translator: sistemas@psilotron.com\n"
+"Language: es\n"
+"Language-Team: sistemas@psilotron.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:162
+msgid "ARCA Company Settings"
+msgstr "Configuración de ARCA por empresa"
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:43
+msgid "ARCA Endpoint Override"
+msgstr "URL alternativa de ARCA"
+
+#. Label of the service (Select) field in DocType 'ARCA Endpoint Override'
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:17
+msgid "ARCA Service"
+msgstr "Servicio de ARCA"
+
+#. Name of a DocType
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:38
+msgid "ARCA Settings"
+msgstr "Configuración de ARCA"
+
+#. Name of a role
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:184
+msgid "Accounts Manager"
+msgstr "Gerente de Cuentas"
+
+#. Label of the activity_start_date (Date) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:77
+msgid "Activity Start Date"
+msgstr "Inicio de actividades"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:34
+msgid "Alias registered in ARCA for this certificate. Letters, numbers, hyphens and underscores only."
+msgstr "Alias con el que se registra este certificado en ARCA. Solo letras, números, guiones y guiones bajos."
+
+#. Label of the cuit (Data) field in DocType 'ARCA Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:47
+msgid "CUIT"
+msgstr "CUIT"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:36
+#, python-brace-format
+msgid "CUIT {0} is not valid."
+msgstr "La CUIT {0} no es válida."
+
+#. Label of the homologation_certificate (Long Text) field in DocType 'ARCA
+#. Company Settings'
+#. Label of the production_certificate (Long Text) field in DocType 'ARCA
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:99
+msgid "Certificate (PEM)"
+msgstr "Certificado (PEM)"
+
+#. Label of the homologation_certificate_expiry (Datetime) field in DocType
+#. 'ARCA Company Settings'
+#. Label of the production_certificate_expiry (Datetime) field in DocType 'ARCA
+#. Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:120
+msgid "Certificate Expiry"
+msgstr "Vencimiento del certificado"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:33
+msgid "Certificate Name"
+msgstr "Nombre del certificado"
+
+#. Label of the homologation_certificate_subject (Small Text) field in DocType
+#. 'ARCA Company Settings'
+#. Label of the production_certificate_subject (Small Text) field in DocType
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:114
+msgid "Certificate Subject"
+msgstr "Titular del certificado"
+
+#. Description of the 'Certificate (PEM)' (Long Text) field in DocType 'ARCA
+#. Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:96
+msgid "Certificate issued by ARCA for the CSR generated from this form."
+msgstr "Certificado que emite ARCA para el CSR generado desde este formulario."
+
+#. Label of the commercial_address (Link) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:86
+msgid "Commercial Address"
+msgstr "Domicilio comercial"
+
+#. Label of the company (Link) field in DocType 'ARCA Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:36
+msgid "Company"
+msgstr "Empresa"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:93
+#, python-brace-format
+msgid "Company {0} has no certificate and private key for {1}."
+msgstr "La empresa {0} no tiene certificado y clave privada para {1}."
+
+#. Label of the environment (Select) field in DocType 'ARCA Company Settings'
+#. Label of the environment (Select) field in DocType 'ARCA Endpoint Override'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:59
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:25
+msgid "Environment"
+msgstr "Ambiente"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:58
+msgid "Generate"
+msgstr "Generar"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:19
+msgid "Generate Key and CSR"
+msgstr "Generar clave y CSR"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:57
+#, python-brace-format
+msgid "Generate Key and CSR for {0}"
+msgstr "Generar clave y CSR para {0}"
+
+#. Label of the gross_income_number (Data) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:72
+msgid "Gross Income Number (IIBB)"
+msgstr "Ingresos Brutos (N.º de inscripción)"
+
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Company
+#. Settings'
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
+#. Override'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
+msgid "Homologation"
+msgstr "Homologación"
+
+#. Label of the homologation_section (Section Break) field in DocType 'ARCA
+#. Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:93
+msgid "Homologation Credentials"
+msgstr "Credenciales de homologación"
+
+#. Label of the issuer_section (Section Break) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:67
+msgid "Issuer Data"
+msgstr "Datos del emisor"
+
+#. Description of the 'Service URLs' (Section Break) field in DocType 'ARCA
+#. Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:21
+msgid "Leave empty to use the official ARCA URLs. Add a row only when ARCA announces a new URL before this app is updated."
+msgstr "Dejalo vacío para usar las URLs oficiales de ARCA. Agregá una fila solo si ARCA anuncia una URL nueva antes de que se actualice esta app."
+
+#. Description of the 'Issuer Data' (Section Break) field in DocType 'ARCA
+#. Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:64
+msgid "Printed on the invoice."
+msgstr "Se imprimen en la factura."
+
+#. Label of the homologation_private_key (Password) field in DocType 'ARCA
+#. Company Settings'
+#. Label of the production_private_key (Password) field in DocType 'ARCA
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:105
+msgid "Private Key"
+msgstr "Clave privada"
+
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Company
+#. Settings'
+#. Option for the 'Environment' (Select) field in DocType 'ARCA Endpoint
+#. Override'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:60
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
+msgid "Production"
+msgstr "Producción"
+
+#. Label of the production_section (Section Break) field in DocType 'ARCA
+#. Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:127
+msgid "Production Credentials"
+msgstr "Credenciales de producción"
+
+#. Label of the request_timeout (Int) field in DocType 'ARCA Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:16
+msgid "Request Timeout (seconds)"
+msgstr "Tiempo de espera de las solicitudes (segundos)"
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.py:25
+#, python-brace-format
+msgid "Row {0}: the URL must start with https://."
+msgstr "Fila {0}: la URL tiene que empezar con https://."
+
+#: arca_integration/arca/doctype/arca_settings/arca_settings.py:18
+#, python-brace-format
+msgid "Row {0}: there is already an override for {1} in {2}."
+msgstr "Fila {0}: ya hay una URL alternativa para {1} en {2}."
+
+#. Label of the endpoints_section (Section Break) field in DocType 'ARCA
+#. Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:24
+msgid "Service URLs"
+msgstr "URLs de los servicios"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:102
+#, python-brace-format
+msgid "Set up ARCA Company Settings for {0}."
+msgstr "Completá la configuración de ARCA de la empresa {0}."
+
+#. Description of the 'Private Key' (Password) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:102
+msgid "Stored encrypted. It is never displayed or downloaded."
+msgstr "Se guarda cifrada. Nunca se muestra ni se descarga."
+
+#. Name of a role
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:174
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:49
+msgid "System Manager"
+msgstr "Administrador del sistema"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:117
+msgid "The certificate name may only contain letters, numbers, hyphens and underscores."
+msgstr "El nombre del certificado solo puede tener letras, números, guiones y guiones bajos."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:65
+#, python-brace-format
+msgid "The {0} certificate is not a valid PEM certificate."
+msgstr "El certificado de {0} no es un certificado PEM válido."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:78
+#, python-brace-format
+msgid "The {0} certificate was not issued for the stored private key."
+msgstr "El certificado de {0} no corresponde a la clave privada guardada."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:52
+#, python-brace-format
+msgid "The {0} private key is not a valid unencrypted PEM key."
+msgstr "La clave privada de {0} no es una clave PEM válida sin contraseña."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:63
+#, python-brace-format
+msgid "This replaces the current {0} private key and clears its certificate. Continue?"
+msgstr "Esto reemplaza la clave privada de {0} y borra su certificado. ¿Continuar?"
+
+#. Label of the url (Data) field in DocType 'ARCA Endpoint Override'
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:33
+msgid "URL"
+msgstr "URL"
+
+#. Label of the endpoint_overrides (Table) field in DocType 'ARCA Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:29
+msgid "URL Overrides"
+msgstr "URLs alternativas"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:51
+#, python-brace-format
+msgid "Upload the downloaded CSR to ARCA, then paste the certificate it returns in {0}."
+msgstr "Subí a ARCA el CSR descargado y pegá en {0} el certificado que te devuelva."
+
+#. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
+#. Override'
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:18
+msgid "padron_a5"
+msgstr "Padrón A5 (padron_a5)"
+
+#. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
+#. Override'
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:18
+msgid "wsaa"
+msgstr "Autenticación WSAA (wsaa)"
+
+#. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
+#. Override'
+#: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:18
+msgid "wsmtxca"
+msgstr "Factura con detalle WSMTXCA (wsmtxca)"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:53
+#, python-brace-format
+msgid "{0} Credentials"
+msgstr "Credenciales de {0}"
+
