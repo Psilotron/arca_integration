@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 16:46+0000\n"
-"PO-Revision-Date: 2026-11-20 16:46+0000\n"
+"POT-Creation-Date: 2026-11-20 17:09+0000\n"
+"PO-Revision-Date: 2026-11-20 17:09+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language-Team: sistemas@psilotron.com\n"
 "MIME-Version: 1.0\n"
@@ -43,20 +43,21 @@ msgstr ""
 msgid "ARCA Access Ticket"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:208
+#: arca_integration/arca/catalogs.py:252
 msgid "ARCA Announcement"
 msgstr ""
 
 #. Name of a DocType
 #. Label of a Sidebar Item
 #. Label of a shortcut in the ARCA Workspace
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:239
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:247
 #: arca_integration/arca/sidebar/arca/arca.json:82
 #: arca_integration/arca/workspace/arca/arca.json:47
 msgid "ARCA Company Settings"
 msgstr ""
 
 #: arca_integration/arca/custom_fields.py:110
+#: arca_integration/public/js/sales_invoice.js:176
 msgid "ARCA Concept"
 msgstr ""
 
@@ -103,6 +104,10 @@ msgstr ""
 msgid "ARCA Point of Sale"
 msgstr ""
 
+#: arca_integration/public/js/sales_invoice.js:111
+msgid "ARCA Preview"
+msgstr ""
+
 #. Name of a DocType
 #. Label of a Sidebar Item
 #: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:51
@@ -124,7 +129,7 @@ msgstr ""
 
 #. Name of a DocType
 #. Label of a Sidebar Item
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:38
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:49
 #: arca_integration/arca/sidebar/arca/arca.json:226
 msgid "ARCA Settings"
 msgstr ""
@@ -133,7 +138,7 @@ msgstr ""
 msgid "ARCA Status"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:219 arca_integration/arca/catalogs.py:221
+#: arca_integration/arca/catalogs.py:263 arca_integration/arca/catalogs.py:265
 msgid "ARCA Sync"
 msgstr ""
 
@@ -143,6 +148,10 @@ msgstr ""
 #: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:43
 #: arca_integration/arca/sidebar/arca/arca.json:178
 msgid "ARCA Tax Type"
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:179
+msgid "ARCA Total"
 msgstr ""
 
 #. Name of a DocType
@@ -179,6 +188,11 @@ msgstr ""
 msgid "ARCA accepted the certificate for wsmtxca."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:279
+#, python-brace-format
+msgid "ARCA accepts this invoice dated up to {0} days before or after today, within the current month for products."
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:97
 msgid "ARCA already issued an access ticket for this certificate and service, but this site did not keep it. Try again when it expires (up to 12 hours) or use a new certificate."
 msgstr ""
@@ -194,6 +208,11 @@ msgstr ""
 
 #: arca_integration/arca/connection.py:285
 msgid "ARCA codes"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:224
+#, python-brace-format
+msgid "ARCA does not allow A or B invoices for the VAT condition of {0}."
 msgstr ""
 
 #: arca_integration/arca/connection.py:69
@@ -272,7 +291,7 @@ msgstr ""
 msgid "ARCA rejected the login: {0}"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:219
+#: arca_integration/arca/catalogs.py:263
 #, python-brace-format
 msgid "ARCA rejected the request: {0}"
 msgstr ""
@@ -290,12 +309,25 @@ msgstr ""
 msgid "ARCA reports that the service is not available right now."
 msgstr ""
 
+#: arca_integration/public/js/sales_invoice.js:47
+msgid "ARCA review"
+msgstr ""
+
 #: arca_integration/arca/connection.py:227
 msgid "ARCA service"
 msgstr ""
 
+#: arca_integration/public/js/sales_invoice.js:74
+msgid "ARCA would reject it:"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:392
+#: arca_integration/public/js/sales_invoice.js:101
+msgid "ARCA would reject this invoice"
+msgstr ""
+
 #. Name of a role
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:261
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:269
 #: arca_integration/arca/doctype/arca_currency/arca_currency.json:65
 #: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:65
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:95
@@ -321,7 +353,7 @@ msgstr ""
 
 #. Label of the activity_start_date (Date) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:132
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:133
 msgid "Activity Start Date"
 msgstr ""
 
@@ -346,6 +378,16 @@ msgstr ""
 msgid "Alias registered in ARCA for this certificate. Letters, numbers, hyphens and underscores only."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:228
+msgid "An A invoice needs the customer's CUIT. Set the document type to CUIT (80)."
+msgstr ""
+
+#. Label of the anonymous_consumer_limit (Currency) field in DocType 'ARCA
+#. Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:26
+msgid "Anonymous Consumer Limit"
+msgstr ""
+
 #: arca_integration/public/js/arca_padron.js:45
 msgid "Apply Selected"
 msgstr ""
@@ -368,7 +410,7 @@ msgid "CAE Due Date"
 msgstr ""
 
 #. Label of the cuit (Data) field in DocType 'ARCA Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:56
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:57
 msgid "CUIT"
 msgstr ""
 
@@ -379,6 +421,10 @@ msgstr ""
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:37
 #, python-brace-format
 msgid "CUIT {0} is not valid."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:120
+msgid "Cancel"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
@@ -398,7 +444,7 @@ msgstr ""
 #. Company Settings'
 #. Label of the production_certificate (Long Text) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:171
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:179
 msgid "Certificate (PEM)"
 msgstr ""
 
@@ -406,7 +452,7 @@ msgstr ""
 #. 'ARCA Company Settings'
 #. Label of the production_certificate_expiry (Datetime) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:192
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:200
 msgid "Certificate Expiry"
 msgstr ""
 
@@ -418,7 +464,7 @@ msgstr ""
 #. 'ARCA Company Settings'
 #. Label of the production_certificate_subject (Small Text) field in DocType
 #. 'ARCA Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:185
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:193
 msgid "Certificate Subject"
 msgstr ""
 
@@ -448,6 +494,14 @@ msgstr ""
 #. Subtitle of the Module Onboarding 'ARCA Onboarding'
 #: arca_integration/arca/module_onboarding/arca_onboarding/arca_onboarding.json:35
 msgid "Certificate, point of sale and connection check"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:281 arca_integration/arca/invoice.py:289
+msgid "Change Date"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:285
+msgid "Change Dates"
 msgstr ""
 
 #: arca_integration/arca/connection.py:42
@@ -505,7 +559,7 @@ msgstr ""
 #. Label of the commercial_address (Link) field in DocType 'ARCA Company
 #. Settings'
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:203
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:141
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:142
 msgid "Commercial Address"
 msgstr ""
 
@@ -513,7 +567,7 @@ msgstr ""
 #. Label of the company (Link) field in DocType 'ARCA Company Settings'
 #. Label of the company (Link) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:21
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:45
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:46
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:22
 #: arca_integration/arca/doctype/arca_settings/arca_settings.js:11
 msgid "Company"
@@ -546,28 +600,28 @@ msgstr ""
 
 #. Label of the connection_section (Section Break) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:75
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:76
 msgid "Connection"
 msgstr ""
 
 #. Label of the connection_html (HTML) field in DocType 'ARCA Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:108
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:109
 msgid "Connection Checklist"
 msgstr ""
 
 #. Label of the connection_report (Long Text) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:114
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:115
 msgid "Connection Report"
 msgstr ""
 
 #. Label of the connection_status (Select) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:82
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:83
 msgid "Connection Status"
 msgstr ""
 
-#: arca_integration/arca/catalogs.py:221
+#: arca_integration/arca/catalogs.py:265
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.py:104
 #, python-brace-format
 msgid "Could not connect to ARCA: {0}"
@@ -591,6 +645,11 @@ msgstr ""
 msgid "Currencies (consultarMonedas)."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:246
+#, python-brace-format
+msgid "Currency {0} has no ARCA currency."
+msgstr ""
+
 #: arca_integration/public/js/arca_padron.js:60
 msgid "Current Value"
 msgstr ""
@@ -599,6 +658,7 @@ msgstr ""
 #. Label of a shortcut in the ARCA Workspace
 #: arca_integration/arca/sidebar/arca/arca.json:50
 #: arca_integration/arca/workspace/arca/arca.json:40
+#: arca_integration/public/js/sales_invoice.js:173
 msgid "Customer"
 msgstr ""
 
@@ -610,6 +670,16 @@ msgstr ""
 msgid "Customer Type"
 msgstr ""
 
+#: arca_integration/arca/invoice.py:220
+#, python-brace-format
+msgid "Customer {0} has no ARCA VAT condition."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:232
+#, python-brace-format
+msgid "Customer {0} needs both the document type and its number (Tax ID)."
+msgstr ""
+
 #: arca_integration/public/js/arca_padron.js:42
 msgid "Data from ARCA"
 msgstr ""
@@ -619,21 +689,26 @@ msgstr ""
 msgid "Deactivated On"
 msgstr ""
 
+#. Label of the default_gtin (Data) field in DocType 'ARCA Company Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:161
+msgid "Default GTIN"
+msgstr ""
+
 #. Label of the default_point_of_sale (Link) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:102
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:103
 msgid "Default Point of Sale"
 msgstr ""
 
 #. Label of the default_vat_condition (Link) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:153
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:154
 msgid "Default VAT Condition"
 msgstr ""
 
 #. Label of the defaults_section (Section Break) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:147
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:148
 msgid "Defaults"
 msgstr ""
 
@@ -689,10 +764,14 @@ msgstr ""
 #. Label of the environment (Select) field in DocType 'ARCA Endpoint Override'
 #. Label of the environment (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:29
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:68
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:69
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:25
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:40
 msgid "Environment"
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:148
+msgid "Exempt"
 msgstr ""
 
 #. Label of the expires_at (Datetime) field in DocType 'ARCA Access Ticket'
@@ -710,6 +789,17 @@ msgstr ""
 
 #: arca_integration/arca/connection.py:224
 msgid "Fix the previous step first."
+msgstr ""
+
+#. Description of the 'Anonymous Consumer Limit' (Currency) field in DocType
+#. 'ARCA Settings'
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:23
+msgid "From this total in pesos, B vouchers must identify the receiver (RG 5700/2025, $10,000,000)."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:236
+#, python-brace-format
+msgid "From {0} the customer must be identified with CUIT, CUIL or DNI."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:154
@@ -737,7 +827,7 @@ msgstr ""
 
 #. Label of the gross_income_number (Data) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:127
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:128
 msgid "Gross Income Number (IIBB)"
 msgstr ""
 
@@ -753,9 +843,10 @@ msgstr ""
 #. Override'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:69
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:70
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:41
+#: arca_integration/public/js/sales_invoice.js:49
 msgid "Homologation"
 msgstr ""
 
@@ -763,7 +854,7 @@ msgstr ""
 #. Company Settings'
 #. Label of the homologation_credentials_html (HTML) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:160
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:168
 msgid "Homologation Credentials"
 msgstr ""
 
@@ -777,6 +868,7 @@ msgid "Homologation does not require registering points of sale. Point of sale {
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:113
+#: arca_integration/public/js/sales_invoice.js:163
 msgid "Homologation: vouchers authorized in this environment have no fiscal validity."
 msgstr ""
 
@@ -809,7 +901,7 @@ msgstr ""
 
 #. Label of the issuer_section (Section Break) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:122
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:123
 msgid "Issuer Data"
 msgstr ""
 
@@ -819,7 +911,7 @@ msgstr ""
 
 #. Label of the last_verified_on (Datetime) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:90
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:91
 msgid "Last Verified On"
 msgstr ""
 
@@ -829,7 +921,7 @@ msgstr ""
 
 #. Description of the 'Service URLs' (Section Break) field in DocType 'ARCA
 #. Settings'
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:21
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:32
 msgid "Leave empty to use the official ARCA URLs. Add a row only when ARCA announces a new URL before this app is updated."
 msgstr ""
 
@@ -848,7 +940,7 @@ msgstr ""
 
 #. Option for the 'Connection Status' (Select) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:84
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:85
 msgid "Needs Attention"
 msgstr ""
 
@@ -866,7 +958,7 @@ msgstr ""
 
 #. Option for the 'Connection Status' (Select) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:84
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:85
 msgid "Not Verified"
 msgstr ""
 
@@ -882,6 +974,36 @@ msgstr ""
 #: arca_integration/arca/connection.py:65
 #, python-brace-format
 msgid "On the ARCA website, open 'Administrador de Relaciones de Clave Fiscal', add a relation for the {0} web service and assign it to this certificate's computer name."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:185
+msgid "Once authorized it cannot be changed or deleted. To correct it you will have to issue a credit note."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:275
+msgid "Open Account"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:247
+msgid "Open Currency"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:221 arca_integration/arca/invoice.py:225
+#: arca_integration/arca/invoice.py:229 arca_integration/arca/invoice.py:233
+#: arca_integration/arca/invoice.py:239 arca_integration/arca/invoice.py:243
+msgid "Open Customer"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:263
+msgid "Open Item"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:251
+msgid "Open Item Tax Template"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:257
+msgid "Open UOM"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:326
@@ -903,8 +1025,14 @@ msgstr ""
 
 #. Description of the 'Default Point of Sale' (Link) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:99
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:100
 msgid "Point of sale used for new invoices. Only points of sale enabled in ARCA can be chosen."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:45
+#: arca_integration/public/js/sales_invoice.js:170
+#, python-brace-format
+msgid "Point of sale {0}"
 msgstr ""
 
 #: arca_integration/arca/connection.py:215
@@ -924,7 +1052,7 @@ msgstr ""
 
 #. Description of the 'Issuer Data' (Section Break) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:119
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:120
 msgid "Printed on the invoice."
 msgstr ""
 
@@ -932,7 +1060,7 @@ msgstr ""
 #. Company Settings'
 #. Label of the production_private_key (Password) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:179
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:187
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:165
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:172
 msgid "Private Key"
@@ -946,6 +1074,12 @@ msgstr ""
 msgid "Private key loaded. It is stored encrypted and never shown."
 msgstr ""
 
+#. Description of the 'Default GTIN' (Data) field in DocType 'ARCA Company
+#. Settings'
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:158
+msgid "Product code (GTIN) reported for items without an EAN, UPC or GTIN barcode. ARCA observes, but does not reject, unregistered codes."
+msgstr ""
+
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Access Ticket'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Company
 #. Settings'
@@ -953,7 +1087,7 @@ msgstr ""
 #. Override'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Point of Sale'
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:30
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:69
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:70
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:26
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:41
 msgid "Production"
@@ -963,7 +1097,7 @@ msgstr ""
 #. Company Settings'
 #. Label of the production_credentials_html (HTML) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:199
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:207
 msgid "Production Credentials"
 msgstr ""
 
@@ -981,8 +1115,12 @@ msgstr ""
 
 #. Option for the 'Connection Status' (Select) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:84
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:85
 msgid "Ready"
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:54
+msgid "Ready to authorize"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:58
@@ -998,8 +1136,28 @@ msgid "Renew it before it expires: generate a new key and CSR and request the ce
 msgstr ""
 
 #. Label of the request_timeout (Int) field in DocType 'ARCA Settings'
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:16
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:17
 msgid "Request Timeout (seconds)"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:250
+#, python-brace-format
+msgid "Row {0} ({1}): no ARCA VAT condition."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:260
+#, python-brace-format
+msgid "Row {0} ({1}): no product code (GTIN). Add an EAN or GTIN barcode to the item."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:266
+#, python-brace-format
+msgid "Row {0} ({1}): quantity and amount must be positive. Use a credit note to return items."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:256
+#, python-brace-format
+msgid "Row {0} ({1}): unit {2} has no ARCA unit of measure."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_settings/arca_settings.py:26
@@ -1037,12 +1195,16 @@ msgstr ""
 
 #. Label of the endpoints_section (Section Break) field in DocType 'ARCA
 #. Settings'
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:24
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:35
 msgid "Service URLs"
 msgstr ""
 
 #: arca_integration/arca/custom_fields.py:24
 msgid "Services"
+msgstr ""
+
+#: arca_integration/arca/invoice.py:253
+msgid "Set Default VAT Condition"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:103
@@ -1078,8 +1240,12 @@ msgstr ""
 
 #. Description of the 'Private Key' (Password) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:175
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:183
 msgid "Stored encrypted. It is never displayed or downloaded."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:114
+msgid "Submit"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_settings/arca_settings.js:6
@@ -1097,12 +1263,12 @@ msgstr ""
 
 #. Name of a role
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:71
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:251
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:259
 #: arca_integration/arca/doctype/arca_currency/arca_currency.json:55
 #: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:55
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:85
 #: arca_integration/arca/doctype/arca_receiver_vat_condition/arca_receiver_vat_condition.json:63
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:49
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:60
 #: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:55
 #: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:55
 #: arca_integration/arca/doctype/arca_vat_condition/arca_vat_condition.json:63
@@ -1123,9 +1289,18 @@ msgstr ""
 msgid "Tax reported to ARCA as another tax (perceptions, internal taxes, etc.)."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:272
+#, python-brace-format
+msgid "Tax row {0}: account {1} is neither marked as VAT nor has an ARCA tax type."
+msgstr ""
+
 #. Description of a DocType
 #: arca_integration/arca/doctype/arca_tax_type/arca_tax_type.json:5
 msgid "Tax types other than VAT (consultarTiposTributo)."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:146
+msgid "Taxed"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:86
@@ -1201,8 +1376,24 @@ msgstr ""
 msgid "The certificate name may only contain letters, numbers, hyphens and underscores."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:216
+msgid "The company has no ARCA point of sale."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:242
+msgid "The customer's CUIT is the company's own CUIT."
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:157
 msgid "The file is too large to be a certificate or a key."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:172
+msgid "The number is assigned by ARCA when authorizing."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:288
+msgid "The payment due date is before the invoice date."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:171
@@ -1216,6 +1407,15 @@ msgstr ""
 #: arca_integration/arca/connection.py:46
 #: arca_integration/arca/connection.py:241
 msgid "The problem is on ARCA's side. Try again later."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:284
+msgid "The service start date is after its end date."
+msgstr ""
+
+#: arca_integration/arca/invoice.py:298
+#, python-brace-format
+msgid "The total for ARCA is {0}, but the invoice total is {1}."
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:66
@@ -1266,7 +1466,7 @@ msgid "URL"
 msgstr ""
 
 #. Label of the endpoint_overrides (Table) field in DocType 'ARCA Settings'
-#: arca_integration/arca/doctype/arca_settings/arca_settings.json:29
+#: arca_integration/arca/doctype/arca_settings/arca_settings.json:40
 msgid "URL Overrides"
 msgstr ""
 
@@ -1274,9 +1474,17 @@ msgstr ""
 msgid "Uncertain"
 msgstr ""
 
+#: arca_integration/public/js/sales_invoice.js:160
+msgid "Unidentified"
+msgstr ""
+
 #. Description of a DocType
 #: arca_integration/arca/doctype/arca_unit_of_measure/arca_unit_of_measure.json:5
 msgid "Units of measure (consultarUnidadesMedida)."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:149
+msgid "Untaxed"
 msgstr ""
 
 #: arca_integration/arca/doctype/arca_settings/arca_settings.js:48
@@ -1295,7 +1503,7 @@ msgstr ""
 
 #. Description of the 'Default VAT Condition' (Link) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:150
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:151
 msgid "Used for items whose Item Tax Template has no ARCA VAT Condition."
 msgstr ""
 
@@ -1318,7 +1526,18 @@ msgstr ""
 msgid "VAT conditions of the receiver, with the voucher types that accept each one (consultarCondicionesIVAReceptor, RG 5616)."
 msgstr ""
 
+#: arca_integration/arca/invoice.py:292
+#, python-brace-format
+msgid "VAT for ARCA is {0}, but the invoice taxes add up to {1}. Check the items' tax templates."
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:147
+#, python-brace-format
+msgid "VAT {0}"
+msgstr ""
+
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:26
+#: arca_integration/arca/invoice.py:217
 msgid "Verify Connection"
 msgstr ""
 
@@ -1364,10 +1583,24 @@ msgstr ""
 msgid "expires in {0} days"
 msgstr ""
 
+#: arca_integration/public/js/sales_invoice.js:154
+#, python-brace-format
+msgid "from {0} to {1}"
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:181
+msgid "matches the invoice"
+msgstr ""
+
 #. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
 #. Override'
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:18
 msgid "padron_a5"
+msgstr ""
+
+#: arca_integration/public/js/sales_invoice.js:156
+#, python-brace-format
+msgid "payment due {0}"
 msgstr ""
 
 #: arca_integration/public/js/arca_padron.js:36
