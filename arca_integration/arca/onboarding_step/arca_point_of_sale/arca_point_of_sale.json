@@ -1,0 +1,19 @@
+{
+ "action": "Go to Page",
+ "action_label": "Choose the point of sale",
+ "creation": "2026-11-20 12:00:00.000000",
+ "description": "Create a web service point of sale in ARCA if you do not have one, then pick it as default.",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2026-11-20 12:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "ARCA Point of Sale",
+ "owner": "Administrator",
+ "path": "arca-company-settings",
+ "show_form_tour": 0,
+ "title": "Choose the point of sale"
+}

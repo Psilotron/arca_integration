@@ -21,6 +21,7 @@ from arca_integration.services.mtxca.client import (
 	CodeDescription,
 	MtxcaClient,
 	MtxcaError,
+	PointOfSale,
 )
 
 SEEDS_DIR = Path(__file__).parent / "seeds"
@@ -125,14 +126,20 @@ def sync_catalogs(company: str) -> dict[str, SyncResult]:
 	return results
 
 
-def sync_points_of_sale(company: str) -> SyncResult:
-	"""Sync the CAE points of sale of `company` in its active environment."""
+def sync_points_of_sale(company: str, points: list[PointOfSale] | None = None) -> SyncResult:
+	"""Sync the CAE points of sale of `company` in its active environment.
+
+	`points` lets a caller that already queried ARCA reuse the answer.
+	"""
 	environment = frappe.db.get_value("ARCA Company Settings", company, "environment")
-	client = get_mtxca_client(company)
+	client = None
+	if points is None:
+		client = get_mtxca_client(company)
+		points = client.points_of_sale_cae()
 	result = SyncResult()
 	seen = set()
 
-	for point in client.points_of_sale_cae():
+	for point in points:
 		name = point_of_sale_name(company, environment, point.number)
 		seen.add(name)
 		values = {"blocked": int(point.blocked), "deactivated_on": point.deactivated_on, "disabled": 0}
@@ -167,7 +174,8 @@ def sync_points_of_sale(company: str) -> SyncResult:
 		frappe.db.set_value("ARCA Point of Sale", name, "disabled", 1)
 		result.disabled += 1
 
-	_show_events(client)
+	if client:
+		_show_events(client)
 	return result
 
 

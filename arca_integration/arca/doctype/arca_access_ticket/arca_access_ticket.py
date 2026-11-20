@@ -61,11 +61,10 @@ class DocTicketStore:
 		frappe.db.commit()  # nosemgrep
 
 
-def get_access_ticket(company: str, service: Service | str) -> Ticket:
-	"""Valid WSAA ticket for `company` and `service` in the company's active environment.
+def obtain_ticket(company: str, service: Service | str) -> Ticket:
+	"""Like `get_access_ticket`, but raises the service-layer errors (`ArcaError`) unchanged.
 
-	May log in to WSAA and commits the current transaction when it does, so call
-	it before changing documents.
+	For callers that explain failures themselves, such as the connection check.
 	"""
 	service = Service(service)
 	settings = get_company_settings(company)
@@ -77,12 +76,21 @@ def get_access_ticket(company: str, service: Service | str) -> Ticket:
 	def do_login() -> Ticket:
 		return wsaa.login(credentials, service_id, get_endpoint(Service.WSAA, environment), get_transport())
 
+	return wsaa.get_ticket(
+		store,
+		lock=lambda: filelock(f"arca-wsaa-{frappe.scrub(store.name)}", timeout=60),
+		do_login=do_login,
+	)
+
+
+def get_access_ticket(company: str, service: Service | str) -> Ticket:
+	"""Valid WSAA ticket for `company` and `service` in the company's active environment.
+
+	May log in to WSAA and commits the current transaction when it does, so call
+	it before changing documents.
+	"""
 	try:
-		return wsaa.get_ticket(
-			store,
-			lock=lambda: filelock(f"arca-wsaa-{frappe.scrub(store.name)}", timeout=60),
-			do_login=do_login,
-		)
+		return obtain_ticket(company, service)
 	except AlreadyAuthenticated:
 		frappe.throw(
 			_(

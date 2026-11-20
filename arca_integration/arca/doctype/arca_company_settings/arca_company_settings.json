@@ -9,6 +9,13 @@
   "cuit",
   "column_break_company",
   "environment",
+  "connection_section",
+  "connection_status",
+  "last_verified_on",
+  "column_break_connection",
+  "default_point_of_sale",
+  "connection_html",
+  "connection_report",
   "issuer_section",
   "gross_income_number",
   "activity_start_date",
@@ -61,6 +68,52 @@
    "label": "Environment",
    "options": "Homologation\nProduction",
    "reqd": 1
+  },
+  {
+   "fieldname": "connection_section",
+   "fieldtype": "Section Break",
+   "label": "Connection"
+  },
+  {
+   "default": "Not Verified",
+   "fieldname": "connection_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Connection Status",
+   "no_copy": 1,
+   "options": "Not Verified\nReady\nNeeds Attention",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_verified_on",
+   "fieldtype": "Datetime",
+   "label": "Last Verified On",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_connection",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Point of sale used for new invoices. Only points of sale enabled in ARCA can be chosen.",
+   "fieldname": "default_point_of_sale",
+   "fieldtype": "Link",
+   "label": "Default Point of Sale",
+   "options": "ARCA Point of Sale"
+  },
+  {
+   "fieldname": "connection_html",
+   "fieldtype": "HTML",
+   "label": "Connection Checklist"
+  },
+  {
+   "fieldname": "connection_report",
+   "fieldtype": "Long Text",
+   "hidden": 1,
+   "label": "Connection Report",
+   "no_copy": 1,
+   "read_only": 1
   },
   {
    "description": "Printed on the invoice.",
