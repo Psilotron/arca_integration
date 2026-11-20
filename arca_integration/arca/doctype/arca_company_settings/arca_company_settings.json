@@ -24,15 +24,15 @@
   "defaults_section",
   "default_vat_condition",
   "homologation_section",
+  "homologation_credentials_html",
   "homologation_certificate",
   "homologation_private_key",
-  "homologation_column_break",
   "homologation_certificate_subject",
   "homologation_certificate_expiry",
   "production_section",
+  "production_credentials_html",
   "production_certificate",
   "production_private_key",
-  "production_column_break",
   "production_certificate_subject",
   "production_certificate_expiry"
  ],
@@ -160,30 +160,35 @@
    "label": "Homologation Credentials"
   },
   {
-   "description": "Certificate issued by ARCA for the CSR generated from this form.",
+   "fieldname": "homologation_credentials_html",
+   "fieldtype": "HTML",
+   "label": "Homologation Credentials"
+  },
+  {
    "fieldname": "homologation_certificate",
    "fieldtype": "Long Text",
-   "label": "Certificate (PEM)"
+   "hidden": 1,
+   "label": "Certificate (PEM)",
+   "read_only": 1
   },
   {
    "description": "Stored encrypted. It is never displayed or downloaded.",
    "fieldname": "homologation_private_key",
    "fieldtype": "Password",
+   "hidden": 1,
    "label": "Private Key"
-  },
-  {
-   "fieldname": "homologation_column_break",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "homologation_certificate_subject",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Certificate Subject",
    "read_only": 1
   },
   {
    "fieldname": "homologation_certificate_expiry",
    "fieldtype": "Datetime",
+   "hidden": 1,
    "label": "Certificate Expiry",
    "read_only": 1
   },
@@ -194,30 +199,35 @@
    "label": "Production Credentials"
   },
   {
-   "description": "Certificate issued by ARCA for the CSR generated from this form.",
+   "fieldname": "production_credentials_html",
+   "fieldtype": "HTML",
+   "label": "Production Credentials"
+  },
+  {
    "fieldname": "production_certificate",
    "fieldtype": "Long Text",
-   "label": "Certificate (PEM)"
+   "hidden": 1,
+   "label": "Certificate (PEM)",
+   "read_only": 1
   },
   {
    "description": "Stored encrypted. It is never displayed or downloaded.",
    "fieldname": "production_private_key",
    "fieldtype": "Password",
+   "hidden": 1,
    "label": "Private Key"
-  },
-  {
-   "fieldname": "production_column_break",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "production_certificate_subject",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Certificate Subject",
    "read_only": 1
   },
   {
    "fieldname": "production_certificate_expiry",
    "fieldtype": "Datetime",
+   "hidden": 1,
    "label": "Certificate Expiry",
    "read_only": 1
   }
