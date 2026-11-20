@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 15:26+0000\n"
+"POT-Creation-Date: 2026-11-20 15:39+0000\n"
 "PO-Revision-Date: 2026-11-20 13:30+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language: es\n"
@@ -52,7 +52,7 @@ msgstr "Aviso de ARCA"
 #. Name of a DocType
 #. Label of a Sidebar Item
 #. Label of a shortcut in the ARCA Workspace
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:229
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:239
 #: arca_integration/arca/sidebar/arca/arca.json:82
 #: arca_integration/arca/workspace/arca/arca.json:47
 msgid "ARCA Company Settings"
@@ -213,7 +213,7 @@ msgstr "ARCA no emite la constancia de este contribuyente: {0}"
 msgid "ARCA does not recognize this certificate for {0}."
 msgstr "ARCA no reconoce este certificado para {0}."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:186
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:182
 msgid "ARCA does not register this CUIT as VAT registered (Responsable Inscripto). WSMTXCA only authorizes A and B invoices, which require it."
 msgstr "ARCA no registra esta CUIT como Responsable Inscripto en IVA. WSMTXCA solo autoriza facturas A y B, que lo requieren."
 
@@ -297,7 +297,7 @@ msgid "ARCA service"
 msgstr "Servicio de ARCA"
 
 #. Name of a role
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:251
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:261
 #: arca_integration/arca/doctype/arca_currency/arca_currency.json:65
 #: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:65
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:95
@@ -344,7 +344,7 @@ msgstr "Los domicilios de ARCA solo se pueden aplicar a clientes y empresas."
 msgid "Advanced"
 msgstr "Opciones avanzadas"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:134
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:130
 msgid "Alias registered in ARCA for this certificate. Letters, numbers, hyphens and underscores only."
 msgstr "Alias con el que se registra este certificado en ARCA. Solo letras, números, guiones y guiones bajos."
 
@@ -378,7 +378,7 @@ msgstr "CUIT"
 msgid "CUIT lookup in the ARCA registry (optional)"
 msgstr "Consulta de CUIT en el padrón de ARCA (opcional)"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:36
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:37
 #, python-brace-format
 msgid "CUIT {0} is not valid."
 msgstr "La CUIT {0} no es válida."
@@ -391,10 +391,15 @@ msgstr "Catálogo"
 msgid "Catalogs Synced"
 msgstr "Catálogos sincronizados"
 
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:183
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:201
+msgid "Certificate"
+msgstr "Certificado"
+
 #. Label of the homologation_certificate (Long Text) field in DocType 'ARCA
 #. Company Settings'
 #. Label of the production_certificate (Long Text) field in DocType 'ARCA
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:166
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:171
 msgid "Certificate (PEM)"
 msgstr "Certificado (PEM)"
 
@@ -402,18 +407,18 @@ msgstr "Certificado (PEM)"
 #. 'ARCA Company Settings'
 #. Label of the production_certificate_expiry (Datetime) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:187
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:192
 msgid "Certificate Expiry"
 msgstr "Vencimiento del certificado"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:133
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:129
 msgid "Certificate Name"
 msgstr "Nombre del certificado"
 
 #. Label of the homologation_certificate_subject (Small Text) field in DocType
 #. 'ARCA Company Settings'
 #. Label of the production_certificate_subject (Small Text) field in DocType
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:181
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:185
 msgid "Certificate Subject"
 msgstr "Titular del certificado"
 
@@ -421,11 +426,19 @@ msgstr "Titular del certificado"
 msgid "Certificate authorization (WSAA)"
 msgstr "Autorización del certificado (WSAA)"
 
-#. Description of the 'Certificate (PEM)' (Long Text) field in DocType 'ARCA
-#. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:163
-msgid "Certificate issued by ARCA for the CSR generated from this form."
-msgstr "Certificado que emite ARCA para el CSR generado desde este formulario."
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:320
+msgid "Certificate issued by ARCA (.crt)"
+msgstr "Certificado emitido por ARCA (.crt)"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:353
+#, python-brace-format
+msgid "Certificate of CUIT {0}, valid until {1}"
+msgstr "Certificado de la CUIT {0}, vigente hasta el {1}"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:252
+#, python-brace-format
+msgid "Certificate valid until {0}"
+msgstr "Certificado vigente hasta el {0}"
 
 #: arca_integration/arca/connection.py:157
 #, python-brace-format
@@ -441,9 +454,13 @@ msgstr "Certificado, punto de venta y verificación de la conexión"
 msgid "Check this server's internet connection and try again in a few minutes."
 msgstr "Revisá la conexión a internet de este servidor y volvé a intentar en unos minutos."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:56
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:52
 msgid "Checking the connection with ARCA..."
 msgstr "Verificando la conexión con ARCA..."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:154
+msgid "Choose the certificate file, the private key file or both."
+msgstr "Elegí el archivo del certificado, el de la clave privada o los dos."
 
 #: arca_integration/arca/connection.py:194
 msgid "Choose the one this company uses in 'Default Point of Sale'."
@@ -487,7 +504,7 @@ msgstr "Códigos descargados de ARCA."
 
 #. Label of the commercial_address (Link) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:207
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:203
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:141
 msgid "Commercial Address"
 msgstr "Domicilio comercial"
@@ -506,17 +523,17 @@ msgstr "Empresa"
 msgid "Company data and certificate"
 msgstr "Datos de la empresa y certificado"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:93
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:94
 #, python-brace-format
 msgid "Company {0} has no certificate and private key for {1}."
 msgstr "La empresa {0} no tiene certificado y clave privada para {1}."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:28
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:29
 #: arca_integration/public/js/customer.js:3
 msgid "Complete from ARCA"
 msgstr "Completar desde ARCA"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:79
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:75
 msgid "Complete the certificate below and press 'Verify Connection'. Each step is checked against ARCA."
 msgstr "Completá el certificado más abajo y tocá 'Verificar conexión'. Cada paso se comprueba con ARCA."
 
@@ -564,6 +581,10 @@ msgstr "No se pudo contactar a ARCA."
 #: arca_integration/arca/onboarding_step/arca_point_of_sale/arca_point_of_sale.json:5
 msgid "Create a web service point of sale in ARCA if you do not have one, then pick it as default."
 msgstr "Si no tenés uno, creá en ARCA un punto de venta para web services y elegilo como predeterminado."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:312
+msgid "Credentials saved"
+msgstr "Credenciales guardadas"
 
 #. Description of a DocType
 #: arca_integration/arca/doctype/arca_currency/arca_currency.json:5
@@ -691,15 +712,15 @@ msgstr "Domicilio fiscal"
 msgid "Fix the previous step first."
 msgstr "Primero resolvé el paso anterior."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:158
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:154
 msgid "Generate"
 msgstr "Generar"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:33
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:270
 msgid "Generate Key and CSR"
 msgstr "Generar clave y CSR"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:157
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:153
 #, python-brace-format
 msgid "Generate Key and CSR for {0}"
 msgstr "Generar clave y CSR para {0}"
@@ -740,6 +761,7 @@ msgstr "Homologación"
 
 #. Label of the homologation_section (Section Break) field in DocType 'ARCA
 #. Company Settings'
+#. Label of the homologation_credentials_html (HTML) field in DocType 'ARCA
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:160
 msgid "Homologation Credentials"
 msgstr "Credenciales de homologación"
@@ -748,7 +770,7 @@ msgstr "Credenciales de homologación"
 msgid "Homologation certificates do not work in production, and vice versa. Paste the certificate ARCA issued for this environment."
 msgstr "Los certificados de homologación no sirven en producción, ni al revés. Pegá el certificado que ARCA emitió para este ambiente."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:117
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:113
 msgid "Homologation: vouchers authorized in this environment have no fiscal validity."
 msgstr "Homologación: los comprobantes autorizados en este ambiente no tienen validez fiscal."
 
@@ -805,6 +827,15 @@ msgstr "Dejalo vacío para deducirlo de los ítems."
 msgid "Leave empty to use the official ARCA URLs. Add a row only when ARCA announces a new URL before this app is updated."
 msgstr "Dejalo vacío para usar las URLs oficiales de ARCA. Agregá una fila solo si ARCA anuncia una URL nueva antes de que se actualice esta app."
 
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:299
+#, python-brace-format
+msgid "Load Credentials for {0}"
+msgstr "Cargar credenciales de {0}"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:269
+msgid "Load Files"
+msgstr "Cargar archivos"
+
 #: arca_integration/public/js/arca_padron.js:12
 msgid "Looking up the CUIT in ARCA..."
 msgstr "Consultando la CUIT en ARCA..."
@@ -814,6 +845,18 @@ msgstr "Consultando la CUIT en ARCA..."
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:84
 msgid "Needs Attention"
 msgstr "Necesita atención"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:271
+msgid "New to ARCA? Use 'Generate Key and CSR': the key is created here and never leaves the server. Already have a certificate and key? Use 'Load Files'."
+msgstr "¿Empezás de cero? Usá 'Generar clave y CSR': la clave se crea acá y nunca sale del servidor. ¿Ya tenés certificado y clave? Usá 'Cargar archivos'."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:245
+msgid "No certificate loaded."
+msgstr "No hay certificado cargado."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:264
+msgid "No private key loaded."
+msgstr "No hay clave privada cargada."
 
 #. Option for the 'Connection Status' (Select) field in DocType 'ARCA Company
 #. Settings'
@@ -834,6 +877,10 @@ msgstr "En el sitio de ARCA, entrá a 'Administración de puntos de venta y domi
 #, python-brace-format
 msgid "On the ARCA website, open 'Administrador de Relaciones de Clave Fiscal', add a relation for the {0} web service and assign it to this certificate's computer name."
 msgstr "En el sitio de ARCA, entrá al 'Administrador de Relaciones de Clave Fiscal', agregá una relación para el web service {0} y asignásela al nombre de computador de este certificado."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:326
+msgid "Optional if the key was generated here. The file is read by your browser and sent only to this site; it is stored encrypted, not as an attachment."
+msgstr "Opcional si la clave se generó acá. Tu navegador lee el archivo y lo envía solo a este sitio; se guarda cifrada, no como adjunto."
 
 #: arca_integration/arca/custom_fields.py:52
 msgid "Output VAT account. Its amounts are reported as VAT subtotals, not as other taxes."
@@ -878,9 +925,19 @@ msgstr "Se imprimen en la factura."
 #. Label of the homologation_private_key (Password) field in DocType 'ARCA
 #. Company Settings'
 #. Label of the production_private_key (Password) field in DocType 'ARCA
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:172
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:179
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:165
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:172
 msgid "Private Key"
 msgstr "Clave privada"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:324
+msgid "Private key (.key)"
+msgstr "Clave privada (.key)"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:263
+msgid "Private key loaded. It is stored encrypted and never shown."
+msgstr "Clave privada cargada. Se guarda cifrada y nunca se muestra."
 
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Access Ticket'
 #. Option for the 'Environment' (Select) field in DocType 'ARCA Company
@@ -897,7 +954,8 @@ msgstr "Producción"
 
 #. Label of the production_section (Section Break) field in DocType 'ARCA
 #. Company Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:194
+#. Label of the production_credentials_html (HTML) field in DocType 'ARCA
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:199
 msgid "Production Credentials"
 msgstr "Credenciales de producción"
 
@@ -919,7 +977,7 @@ msgstr "Consultando a ARCA..."
 msgid "Ready"
 msgstr "Lista"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:62
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:58
 msgid "Ready to invoice"
 msgstr "Lista para facturar"
 
@@ -953,6 +1011,14 @@ msgstr "Fila {0}: ya hay una URL alternativa para {1} en {2}."
 msgid "Sales Invoice"
 msgstr "Factura de Venta"
 
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:301
+msgid "Save"
+msgstr "Guardar"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:228
+msgid "Save the company first to load its credentials."
+msgstr "Guardá la empresa antes de cargar sus credenciales."
+
 #: arca_integration/arca/custom_fields.py:125
 msgid "Service End Date"
 msgstr "Fecha de Finalización del Servicio"
@@ -971,7 +1037,7 @@ msgstr "URLs de los servicios"
 msgid "Services"
 msgstr "Servicios"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:102
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:103
 #: arca_integration/arca/padron.py:27
 #, python-brace-format
 msgid "Set up ARCA Company Settings for {0}."
@@ -998,13 +1064,13 @@ msgstr "Configurar la empresa en ARCA"
 msgid "Sign"
 msgstr "Firma (sign)"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:62
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:58
 msgid "Some steps need attention"
 msgstr "Algunos pasos necesitan atención"
 
 #. Description of the 'Private Key' (Password) field in DocType 'ARCA Company
 #. Settings'
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:169
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:175
 msgid "Stored encrypted. It is never displayed or downloaded."
 msgstr "Se guarda cifrada. Nunca se muestra ni se descarga."
 
@@ -1023,7 +1089,7 @@ msgstr "Sincronizá los catálogos de ARCA para aplicar la condición de IVA."
 
 #. Name of a role
 #: arca_integration/arca/doctype/arca_access_ticket/arca_access_ticket.json:71
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:241
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.json:251
 #: arca_integration/arca/doctype/arca_currency/arca_currency.json:55
 #: arca_integration/arca/doctype/arca_document_type/arca_document_type.json:55
 #: arca_integration/arca/doctype/arca_point_of_sale/arca_point_of_sale.json:85
@@ -1054,7 +1120,7 @@ msgstr "Tributo que se informa a ARCA como otro tributo (percepciones, impuestos
 msgid "Tax types other than VAT (consultarTiposTributo)."
 msgstr "Tipos de tributo distintos del IVA (consultarTiposTributo)."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:90
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:86
 msgid "Technical detail"
 msgstr "Detalle técnico"
 
@@ -1081,15 +1147,34 @@ msgstr "La condición de IVA se deduce de los impuestos registrados en ARCA. Rev
 msgid "The address will be created when you save."
 msgstr "El domicilio se va a crear cuando guardes."
 
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:217
+#, python-brace-format
+msgid "The certificate belongs to CUIT {0} and the company is {1}. It only works if CUIT {0} was delegated the service."
+msgstr "El certificado es de la CUIT {0} y la empresa es {1}. Solo funciona si a la CUIT {0} se le delegó el servicio."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:199
+msgid "The certificate does not match the private key already stored. Load the certificate issued for the CSR generated here, or load both files together."
+msgstr "El certificado no corresponde a la clave privada guardada. Cargá el certificado emitido para el CSR generado acá, o cargá los dos archivos juntos."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:196
+msgid "The certificate does not match the private key. Load both files from the same request."
+msgstr "El certificado no corresponde a la clave privada. Cargá los dos archivos de la misma solicitud."
+
 #: arca_integration/arca/connection.py:145
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:210
 #, python-brace-format
 msgid "The certificate expired on {0}."
 msgstr "El certificado venció el {0}."
 
 #: arca_integration/arca/connection.py:153
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:213
 #, python-brace-format
 msgid "The certificate expires in {0} days."
 msgstr "El certificado vence en {0} días."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:182
+msgid "The certificate file is not a PEM certificate ('-----BEGIN CERTIFICATE-----')."
+msgstr "El archivo del certificado no es un certificado PEM ('-----BEGIN CERTIFICATE-----')."
 
 #: arca_integration/arca/connection.py:49
 msgid "The certificate has expired."
@@ -1100,26 +1185,42 @@ msgstr "El certificado venció."
 msgid "The certificate is not authorized for the {0} service."
 msgstr "El certificado no está autorizado para el servicio {0}."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:117
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:358
+msgid "The certificate matches the private key."
+msgstr "El certificado corresponde a la clave privada."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:118
 msgid "The certificate name may only contain letters, numbers, hyphens and underscores."
 msgstr "El nombre del certificado solo puede tener letras, números, guiones y guiones bajos."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:157
+msgid "The file is too large to be a certificate or a key."
+msgstr "El archivo es demasiado grande para ser un certificado o una clave."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:171
+msgid "The private key file is not a PEM private key ('-----BEGIN PRIVATE KEY-----')."
+msgstr "El archivo de la clave no es una clave privada PEM ('-----BEGIN PRIVATE KEY-----')."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:163
+msgid "The private key is protected with a password. Remove it and load the new file: openssl pkey -in key.key -out key_without_password.key"
+msgstr "La clave privada tiene contraseña. Quitásela y cargá el archivo nuevo: openssl pkey -in clave.key -out clave_sin_contraseña.key"
 
 #: arca_integration/arca/connection.py:46
 #: arca_integration/arca/connection.py:225
 msgid "The problem is on ARCA's side. Try again later."
 msgstr "El problema es de ARCA. Volvé a intentar más tarde."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:65
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:66
 #, python-brace-format
 msgid "The {0} certificate is not a valid PEM certificate."
 msgstr "El certificado de {0} no es un certificado PEM válido."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:78
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:79
 #, python-brace-format
 msgid "The {0} certificate was not issued for the stored private key."
 msgstr "El certificado de {0} no corresponde a la clave privada guardada."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:52
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.py:53
 #, python-brace-format
 msgid "The {0} private key is not a valid unencrypted PEM key."
 msgstr "La clave privada de {0} no es una clave PEM válida sin contraseña."
@@ -1129,7 +1230,11 @@ msgstr "La clave privada de {0} no es una clave PEM válida sin contraseña."
 msgid "There is no certificate for {0}."
 msgstr "No hay certificado para {0}."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:163
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:361
+msgid "There is no private key yet for this certificate."
+msgstr "Todavía no hay clave privada para este certificado."
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:159
 #, python-brace-format
 msgid "This replaces the current {0} private key and clears its certificate. Continue?"
 msgstr "Esto reemplaza la clave privada de {0} y borra su certificado. ¿Continuar?"
@@ -1170,10 +1275,10 @@ msgstr "Unidades de medida (consultarUnidadesMedida)."
 msgid "Updated"
 msgstr "Actualizado"
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:151
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:147
 #, python-brace-format
-msgid "Upload the downloaded CSR to ARCA, then paste the certificate it returns in {0}."
-msgstr "Subí a ARCA el CSR descargado y pegá en {0} el certificado que te devuelva."
+msgid "Upload the downloaded CSR to ARCA. When ARCA returns the certificate (.crt), load it with 'Load Files' in {0}."
+msgstr "Subí a ARCA el CSR descargado. Cuando ARCA te devuelva el certificado (.crt), cargalo con 'Cargar archivos' en {0}."
 
 #: arca_integration/arca/connection.py:133
 #, python-brace-format
@@ -1205,7 +1310,7 @@ msgstr "Condiciones de IVA de un ítem de la factura (consultarCondicionesIVA)."
 msgid "VAT conditions of the receiver, with the voucher types that accept each one (consultarCondicionesIVAReceptor, RG 5616)."
 msgstr "Condiciones frente al IVA del receptor, con los tipos de comprobante que acepta cada una (consultarCondicionesIVAReceptor, RG 5616)."
 
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:25
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:26
 msgid "Verify Connection"
 msgstr "Verificar conexión"
 
@@ -1242,6 +1347,15 @@ msgstr "Tickets de acceso de WSAA que se conservan entre solicitudes. ARCA recha
 msgid "Wait until it expires (up to 12 hours) or use a new certificate."
 msgstr "Esperá a que venza (hasta 12 horas) o usá un certificado nuevo."
 
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:254
+msgid "expired"
+msgstr "vencido"
+
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:253
+#, python-brace-format
+msgid "expires in {0} days"
+msgstr "vence en {0} días"
+
 #. Option for the 'ARCA Service' (Select) field in DocType 'ARCA Endpoint
 #. Override'
 #: arca_integration/arca/doctype/arca_endpoint_override/arca_endpoint_override.json:18
@@ -1265,7 +1379,7 @@ msgid "wsmtxca"
 msgstr "Factura con detalle WSMTXCA (wsmtxca)"
 
 #: arca_integration/arca/connection.py:134
-#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:153
+#: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:149
 #, python-brace-format
 msgid "{0} Credentials"
 msgstr "Credenciales de {0}"
