@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ARCA Integration VERSION\n"
 "Report-Msgid-Bugs-To: sistemas@psilotron.com\n"
-"POT-Creation-Date: 2026-11-20 17:29+0000\n"
+"POT-Creation-Date: 2026-11-20 18:04+0000\n"
 "PO-Revision-Date: 2026-11-20 13:30+0000\n"
 "Last-Translator: sistemas@psilotron.com\n"
 "Language: es\n"
@@ -28,7 +28,7 @@ msgstr "'Completar desde ARCA' está disponible."
 msgid "0 for non-taxed and exempt items too: tell them apart by code."
 msgstr "También es 0 para ítems no gravados y exentos: se distinguen por el código."
 
-#: arca_integration/services/mtxca/messages.py:73
+#: arca_integration/services/mtxca/messages.py:76
 msgid "A product code (GTIN) is not registered in ARCA. The invoice was authorized with an observation."
 msgstr "Un código de producto (GTIN) no está registrado en ARCA. La factura se autorizó con una observación."
 
@@ -36,7 +36,7 @@ msgstr "Un código de producto (GTIN) no está registrado en ARCA. La factura se
 #. Name of a Workspace
 #. Label of a Desktop Icon
 #: arca_integration/arca/custom_fields.py:104
-#: arca_integration/arca/emission.py:166 arca_integration/arca/emission.py:173
+#: arca_integration/arca/emission.py:179 arca_integration/arca/emission.py:193
 #: arca_integration/arca/sidebar/arca/arca.json:257
 #: arca_integration/arca/workspace/arca/arca.json:14
 #: arca_integration/desktop_icon/arca.json:10
@@ -227,6 +227,11 @@ msgstr "ARCA ya emitió un ticket de acceso para este certificado y servicio, pe
 msgid "ARCA already issued an access ticket for this certificate that this site did not keep."
 msgstr "ARCA ya emitió un ticket de acceso para este certificado y este sitio no lo conservó."
 
+#: arca_integration/arca/emission.py:181
+#, python-brace-format
+msgid "ARCA answered with a technical error, so the invoice was not submitted: {0}"
+msgstr "ARCA respondió con un error técnico y la factura no se validó: {0}"
+
 #: arca_integration/arca/connection.py:85
 #, python-brace-format
 msgid "ARCA answered: {0}"
@@ -236,11 +241,11 @@ msgstr "ARCA respondió: {0}"
 msgid "ARCA codes"
 msgstr "Códigos de ARCA"
 
-#: arca_integration/arca/emission.py:169
+#: arca_integration/arca/emission.py:186
 msgid "ARCA did not answer in time and it could not be confirmed whether it authorized the invoice. The invoice was not submitted. When you try again, this site first asks ARCA and recovers the CAE if it was issued."
 msgstr "ARCA no respondió a tiempo y no se pudo confirmar si autorizó la factura. La factura no se validó. Cuando lo intentes de nuevo, primero se consulta a ARCA y, si el CAE se emitió, se recupera."
 
-#: arca_integration/services/mtxca/messages.py:53
+#: arca_integration/services/mtxca/messages.py:55
 msgid "ARCA does not accept the customer's VAT condition for this voucher type."
 msgstr "ARCA no acepta la condición de IVA del cliente para este tipo de comprobante."
 
@@ -268,7 +273,7 @@ msgstr "ARCA no reconoce este certificado para {0}."
 msgid "ARCA does not register this CUIT as VAT registered (Responsable Inscripto). WSMTXCA only authorizes A and B invoices, which require it."
 msgstr "ARCA no registra esta CUIT como Responsable Inscripto en IVA. WSMTXCA solo autoriza facturas A y B, que lo requieren."
 
-#: arca_integration/arca/emission.py:88
+#: arca_integration/arca/emission.py:94
 #, python-brace-format
 msgid "ARCA had already authorized this invoice (CAE {0}). The CAE was recovered."
 msgstr "ARCA ya había autorizado esta factura (CAE {0}). Se recuperó el CAE."
@@ -282,7 +287,7 @@ msgstr "ARCA no tiene ningún punto de venta activo para facturas con detalle de
 msgid "ARCA has no taxpayer with CUIT {0}."
 msgstr "ARCA no tiene ningún contribuyente con la CUIT {0}."
 
-#: arca_integration/arca/emission.py:97
+#: arca_integration/arca/emission.py:105
 #, python-brace-format
 msgid "ARCA has voucher {0} for this point of sale, but this site did not issue it. Another system may be using the point of sale. Use a point of sale only for ERPNext."
 msgstr "ARCA tiene el comprobante {0} en este punto de venta, pero no lo emitió este sitio. Puede que otro sistema use el mismo punto de venta. Usá un punto de venta exclusivo para ERPNext."
@@ -296,7 +301,7 @@ msgstr "ARCA tiene {0} puntos de venta activos."
 msgid "ARCA is answering."
 msgstr "ARCA está respondiendo."
 
-#: arca_integration/arca/emission.py:172
+#: arca_integration/arca/emission.py:189
 msgid "ARCA is not responding. Your invoice was not submitted; try again in a few minutes."
 msgstr "ARCA no está respondiendo. Tu factura no se validó; probá de nuevo en unos minutos."
 
@@ -310,11 +315,11 @@ msgstr "ARCA está lista para autorizar tus facturas."
 msgid "ARCA lets CUIT {0} use wsmtxca."
 msgstr "ARCA habilita a la CUIT {0} a usar wsmtxca."
 
-#: arca_integration/services/mtxca/messages.py:61
+#: arca_integration/services/mtxca/messages.py:63
 msgid "ARCA limits the customer's CUIT: it was characterized as unreliable for Social Security."
 msgstr "ARCA limita la CUIT del cliente: fue caracterizada como no confiable en materia de Seguridad Social."
 
-#: arca_integration/services/mtxca/messages.py:65
+#: arca_integration/services/mtxca/messages.py:67
 msgid "ARCA limits the customer's CUIT: it was marked as apocryphal."
 msgstr "ARCA limita la CUIT del cliente: fue marcada como apócrifa."
 
@@ -342,7 +347,7 @@ msgstr "ARCA ya no devuelve este código. Se conserva porque puede haber documen
 msgid "ARCA no longer returns this point of sale. Kept because documents may still refer to it."
 msgstr "ARCA ya no devuelve este punto de venta. Se conserva porque puede haber documentos que lo usen."
 
-#: arca_integration/arca/emission.py:124
+#: arca_integration/arca/emission.py:132
 msgid "ARCA rejected the invoice"
 msgstr "ARCA rechazó la factura"
 
@@ -369,11 +374,11 @@ msgstr "ARCA informa problemas en sus servidores (aplicación: {0}, base de dato
 msgid "ARCA reports that the service is not available right now."
 msgstr "ARCA informa que el servicio no está disponible en este momento."
 
-#: arca_integration/services/mtxca/messages.py:57
+#: arca_integration/services/mtxca/messages.py:59
 msgid "ARCA reports the customer's CUIT as inactive or invalidated."
 msgstr "ARCA informa que la CUIT del cliente está inactiva o invalidada."
 
-#: arca_integration/services/mtxca/messages.py:49
+#: arca_integration/services/mtxca/messages.py:51
 msgid "ARCA requires the customer's VAT condition."
 msgstr "ARCA exige la condición de IVA del cliente."
 
@@ -385,7 +390,7 @@ msgstr "Revisión ARCA"
 msgid "ARCA service"
 msgstr "Servicio de ARCA"
 
-#: arca_integration/services/mtxca/messages.py:45
+#: arca_integration/services/mtxca/messages.py:47
 msgid "ARCA was still processing another voucher of the same point of sale."
 msgstr "ARCA todavía estaba procesando otro comprobante del mismo punto de venta."
 
@@ -461,7 +466,7 @@ msgstr "Alias con el que se registra este certificado en ARCA. Solo letras, núm
 msgid "An A invoice needs the customer's CUIT. Set the document type to CUIT (80)."
 msgstr "Una factura A necesita la CUIT del cliente. Poné el tipo de documento CUIT (80)."
 
-#: arca_integration/arca/emission.py:230
+#: arca_integration/arca/emission.py:252
 msgid "An invoice authorized by ARCA cannot be cancelled or deleted. To correct it, issue a credit note."
 msgstr "Una factura autorizada por ARCA no se puede cancelar ni borrar. Para corregirla, emití una nota de crédito."
 
@@ -485,7 +490,7 @@ msgstr "Aplicar lo seleccionado"
 msgid "Authorized"
 msgstr "Autorizado"
 
-#: arca_integration/arca/emission.py:232
+#: arca_integration/arca/emission.py:254
 #: arca_integration/public/js/sales_invoice.js:55
 msgid "Authorized by ARCA"
 msgstr "Autorizada por ARCA"
@@ -495,7 +500,7 @@ msgstr "Autorizada por ARCA"
 msgid "Authorized by ARCA · CAE {0}"
 msgstr "Autorizada por ARCA · CAE {0}"
 
-#: arca_integration/arca/emission.py:142
+#: arca_integration/arca/emission.py:148
 msgid "Authorized with observations"
 msgstr "Autorizada con observaciones"
 
@@ -612,32 +617,32 @@ msgstr "Cambiar fecha"
 msgid "Change Dates"
 msgstr "Cambiar fechas"
 
-#: arca_integration/services/mtxca/messages.py:38
+#: arca_integration/services/mtxca/messages.py:40
 msgid "Change the invoice date to that date or later."
 msgstr "Cambiá la fecha de la factura a esa fecha o una posterior."
 
-#: arca_integration/services/mtxca/messages.py:70
+#: arca_integration/services/mtxca/messages.py:72
 msgid "Check the CUIT with 'Complete from ARCA'."
 msgstr "Revisá la CUIT con 'Completar desde ARCA'."
 
-#: arca_integration/services/mtxca/messages.py:58
+#: arca_integration/services/mtxca/messages.py:60
 msgid "Check the CUIT with the customer."
 msgstr "Revisá la CUIT con el cliente."
 
-#: arca_integration/services/mtxca/messages.py:54
+#: arca_integration/services/mtxca/messages.py:56
 msgid "Check the customer's VAT condition with 'Complete from ARCA'."
 msgstr "Revisá la condición de IVA del cliente con 'Completar desde ARCA'."
 
-#: arca_integration/services/mtxca/messages.py:42
+#: arca_integration/services/mtxca/messages.py:44
 msgid "Check the exchange rate of the invoice."
 msgstr "Revisá el tipo de cambio de la factura."
 
-#: arca_integration/services/mtxca/messages.py:74
+#: arca_integration/services/mtxca/messages.py:78
 msgid "Check the items' barcodes or the company's default GTIN."
 msgstr "Revisá los códigos de barras de los productos o el GTIN por defecto de la empresa."
 
-#: arca_integration/services/mtxca/messages.py:62
-#: arca_integration/services/mtxca/messages.py:66
+#: arca_integration/services/mtxca/messages.py:64
+#: arca_integration/services/mtxca/messages.py:68
 msgid "Check the situation with the customer."
 msgstr "Revisá la situación con el cliente."
 
@@ -726,7 +731,7 @@ msgstr "La empresa {0} no tiene certificado y clave privada para {1}."
 msgid "Complete from ARCA"
 msgstr "Completar desde ARCA"
 
-#: arca_integration/services/mtxca/messages.py:50
+#: arca_integration/services/mtxca/messages.py:52
 msgid "Complete it in the customer with 'Complete from ARCA'."
 msgstr "Completala en el cliente con 'Completar desde ARCA'."
 
@@ -941,7 +946,7 @@ msgstr "Domicilio fiscal"
 msgid "Fix the previous step first."
 msgstr "Primero resolvé el paso anterior."
 
-#: arca_integration/services/mtxca/messages.py:69
+#: arca_integration/services/mtxca/messages.py:71
 msgid "For invoices from $10,000,000, the customer's CUIT must be registered and active in ARCA."
 msgstr "Para facturas desde $10.000.000, la CUIT del cliente debe estar registrada y activa en ARCA."
 
@@ -1046,7 +1051,7 @@ msgstr "Si el mensaje no es claro, compartilo con soporte."
 msgid "In WSASS, create an authorization for the {0} service using this certificate's computer name."
 msgstr "En WSASS, creá una autorización para el servicio {0} con el nombre de computador de este certificado."
 
-#: arca_integration/services/mtxca/messages.py:78
+#: arca_integration/services/mtxca/messages.py:82
 msgid "Invoices with item detail (A and B) require being VAT registered (Responsable Inscripto)."
 msgstr "Las facturas con detalle de ítems (A y B) exigen ser Responsable Inscripto en IVA."
 
@@ -1300,7 +1305,7 @@ msgstr "Lista para autorizar"
 msgid "Ready to invoice"
 msgstr "Lista para facturar"
 
-#: arca_integration/services/mtxca/messages.py:82
+#: arca_integration/services/mtxca/messages.py:88
 msgid "Register it on the ARCA website before invoicing with this service."
 msgstr "Empadronala en el sitio de ARCA antes de facturar con este servicio."
 
@@ -1511,6 +1516,7 @@ msgid "Technical Detail"
 msgstr "Detalle técnico"
 
 #: arca_integration/arca/doctype/arca_company_settings/arca_company_settings.js:86
+#: arca_integration/arca/emission.py:192
 msgid "Technical detail"
 msgstr "Detalle técnico"
 
@@ -1587,11 +1593,11 @@ msgstr "El nombre del certificado solo puede tener letras, números, guiones y g
 msgid "The company has no ARCA point of sale."
 msgstr "La empresa no tiene punto de venta de ARCA."
 
-#: arca_integration/services/mtxca/messages.py:81
+#: arca_integration/services/mtxca/messages.py:86
 msgid "The company's CUIT is not registered for 'Codificación de Productos - opción Factura con Detalle'."
 msgstr "La CUIT de la empresa no está empadronada en 'Codificación de Productos - opción Factura con Detalle'."
 
-#: arca_integration/services/mtxca/messages.py:77
+#: arca_integration/services/mtxca/messages.py:81
 msgid "The company's CUIT is not registered for VAT in ARCA."
 msgstr "La CUIT de la empresa no está inscripta en IVA en ARCA."
 
@@ -1599,7 +1605,7 @@ msgstr "La CUIT de la empresa no está inscripta en IVA en ARCA."
 msgid "The customer's CUIT is the company's own CUIT."
 msgstr "La CUIT del cliente es la misma de la empresa."
 
-#: arca_integration/services/mtxca/messages.py:41
+#: arca_integration/services/mtxca/messages.py:43
 msgid "The exchange rate is too far from ARCA's official rate."
 msgstr "El tipo de cambio se aleja demasiado de la cotización oficial de ARCA."
 
@@ -1611,7 +1617,7 @@ msgstr "El archivo es demasiado grande para ser un certificado o una clave."
 msgid "The invoice changed while it was being submitted. Review it and try again."
 msgstr "La factura cambió mientras se validaba. Revisala y probá de nuevo."
 
-#: arca_integration/services/mtxca/messages.py:37
+#: arca_integration/services/mtxca/messages.py:38
 msgid "The invoice date is earlier than the date of the last voucher authorized for this point of sale."
 msgstr "La fecha de la factura es anterior a la del último comprobante autorizado en este punto de venta."
 
@@ -1691,7 +1697,7 @@ msgstr "El reloj de este servidor está mal. Pedile a quien administra el servid
 msgid "Token"
 msgstr "Token"
 
-#: arca_integration/services/mtxca/messages.py:46
+#: arca_integration/services/mtxca/messages.py:48
 msgid "Try again in a few seconds."
 msgstr "Probá de nuevo en unos segundos."
 
