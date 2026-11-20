@@ -32,10 +32,7 @@ bench --site <sitio> set-config allow_tests true
 bench --site <sitio> run-tests --app arca_integration
 ```
 
-## CI
-
-- **CI**: instala la app sobre Frappe y ERPNext v16 y corre los tests en cada PR y en cada push a `main`.
-- **Linters**: pre-commit, [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) y [pip-audit](https://pypi.org/project/pip-audit/) en cada PR.
+Antes de abrir un PR, corré `pre-commit run --all-files` y los tests. El repositorio no tiene CI por ahora.
 
 ## Licencia
 
