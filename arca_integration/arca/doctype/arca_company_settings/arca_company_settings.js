@@ -25,6 +25,7 @@ frappe.ui.form.on("ARCA Company Settings", {
 		frm.add_custom_button(__("Verify Connection"), () => verify_connection(frm)).addClass(
 			"btn-primary"
 		);
+		frm.add_custom_button(__("Complete from ARCA"), () => complete_company_from_arca(frm));
 		for (const environment of ["Homologation", "Production"]) {
 			frm.add_custom_button(
 				__(environment),
@@ -176,4 +177,44 @@ function download(filename, content) {
 	link.download = filename;
 	link.click();
 	URL.revokeObjectURL(url);
+}
+
+async function complete_company_from_arca(frm) {
+	const taxpayer = await arca.lookup_cuit({ cuit: frm.doc.cuit, company: frm.doc.company });
+	if (taxpayer.vat_condition && taxpayer.vat_condition !== "1") {
+		taxpayer.warnings.push(
+			__(
+				"ARCA does not register this CUIT as VAT registered (Responsable Inscripto). WSMTXCA only authorizes A and B invoices, which require it."
+			)
+		);
+	}
+	const address = taxpayer.address;
+	const current = frm.doc.commercial_address
+		? (
+				await frappe.db.get_value("Address", frm.doc.commercial_address, [
+					"address_line1",
+					"city",
+				])
+		  ).message
+		: null;
+	const join = (a) => (a ? [a.address_line1, a.city].filter(Boolean).join(", ") : "");
+
+	arca.show_comparison({
+		taxpayer,
+		rows: [
+			{
+				key: "address",
+				label: __("Commercial Address"),
+				current: join(current),
+				arca: join(address),
+			},
+		],
+		on_apply(keys) {
+			if (!keys.includes("address") || !address) return;
+			arca.apply_address("Company", frm.doc.company, address).then((name) => {
+				frm.set_value("commercial_address", name);
+				frm.save();
+			});
+		},
+	});
 }
