@@ -24,7 +24,6 @@ build/
 
 # author's local planning workspace
 .superpowers/
-.plan/
 
 # system and editor
 .DS_Store
