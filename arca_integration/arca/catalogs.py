@@ -14,6 +14,7 @@ from frappe import _
 
 from arca_integration.arca.doctype.arca_point_of_sale.arca_point_of_sale import point_of_sale_name
 from arca_integration.arca.mtxca import get_mtxca_client
+from arca_integration.services.endpoints import Environment
 from arca_integration.services.errors import ArcaError
 from arca_integration.services.mtxca.catalogs import group_receiver_conditions, is_issuable, vat_rate
 from arca_integration.services.mtxca.client import (
@@ -24,6 +25,7 @@ from arca_integration.services.mtxca.client import (
 	PointOfSale,
 )
 
+TEST_POINT_OF_SALE = 1
 SEEDS_DIR = Path(__file__).parent / "seeds"
 
 # DocType -> MtxcaClient method that returns its codes.
@@ -160,6 +162,10 @@ def sync_points_of_sale(company: str, points: list[PointOfSale] | None = None) -
 			).insert(ignore_permissions=True)
 			result.added += 1
 
+	if not points and environment == Environment.HOMOLOGATION:
+		# Homologation lists none; keep the test point of sale.
+		return result
+
 	stale = frappe.get_all(
 		"ARCA Point of Sale",
 		filters={
@@ -177,6 +183,24 @@ def sync_points_of_sale(company: str, points: list[PointOfSale] | None = None) -
 	if client:
 		_show_events(client)
 	return result
+
+
+def create_test_point_of_sale(company: str, number: int = TEST_POINT_OF_SALE):
+	"""Point of sale used in homologation, where ARCA accepts any number."""
+	name = point_of_sale_name(company, Environment.HOMOLOGATION, number)
+	if frappe.db.exists("ARCA Point of Sale", name):
+		doc = frappe.get_doc("ARCA Point of Sale", name)
+		if doc.disabled:
+			doc.db_set("disabled", 0)
+		return doc
+	return frappe.get_doc(
+		{
+			"doctype": "ARCA Point of Sale",
+			"company": company,
+			"environment": Environment.HOMOLOGATION,
+			"number": number,
+		}
+	).insert(ignore_permissions=True)
 
 
 def _show_events(client: MtxcaClient) -> None:

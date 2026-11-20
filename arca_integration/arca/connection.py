@@ -11,7 +11,7 @@ import frappe
 from frappe import _
 from frappe.utils import get_datetime, now_datetime
 
-from arca_integration.arca.catalogs import sync_catalogs, sync_points_of_sale
+from arca_integration.arca.catalogs import create_test_point_of_sale, sync_catalogs, sync_points_of_sale
 from arca_integration.arca.doctype.arca_access_ticket.arca_access_ticket import obtain_ticket
 from arca_integration.arca.doctype.arca_company_settings.arca_company_settings import get_company_settings
 from arca_integration.arca.mtxca import get_status_client, mtxca_client_for
@@ -172,6 +172,22 @@ def choose_point_of_sale(settings) -> dict:
 		fields=["name", "number"],
 		order_by="number asc",
 	)
+	listed = frappe.db.exists(
+		"ARCA Point of Sale",
+		{"company": settings.company, "environment": settings.environment, "disabled": 0},
+	)
+	if not listed and settings.environment == Environment.HOMOLOGATION:
+		# Homologation lists no points of sale and accepts any number.
+		point = create_test_point_of_sale(settings.company)
+		settings.db_set("default_point_of_sale", point.name, update_modified=False)
+		return _step(
+			"points_of_sale",
+			title,
+			OK,
+			_(
+				"Homologation does not require registering points of sale. Point of sale {0} is used for tests."
+			).format(f"{point.number:05d}"),
+		)
 	if not usable:
 		return _step(
 			"points_of_sale",
