@@ -55,6 +55,7 @@ required_apps = ["erpnext"]
 doctype_js = {
 	"Customer": ["public/js/arca_padron.js", "public/js/customer.js"],
 	"ARCA Company Settings": "public/js/arca_padron.js",
+	"Sales Invoice": "public/js/sales_invoice.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_kanban_js = {"doctype" : "public/js/doctype_kanban.js"}
@@ -165,6 +166,7 @@ before_uninstall = "arca_integration.install.before_uninstall"
 
 doc_events = {
 	"Customer": {"validate": "arca_integration.arca.events.customer.validate"},
+	"Sales Invoice": {"before_submit": "arca_integration.arca.invoice.before_submit"},
 }
 
 # doc_events = {

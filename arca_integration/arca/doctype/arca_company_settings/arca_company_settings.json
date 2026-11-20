@@ -23,6 +23,7 @@
   "commercial_address",
   "defaults_section",
   "default_vat_condition",
+  "default_gtin",
   "homologation_section",
   "homologation_credentials_html",
   "homologation_certificate",
@@ -154,6 +155,13 @@
    "options": "ARCA VAT Condition"
   },
   {
+   "description": "Product code (GTIN) reported for items without an EAN, UPC or GTIN barcode. ARCA observes, but does not reject, unregistered codes.",
+   "fieldname": "default_gtin",
+   "fieldtype": "Data",
+   "label": "Default GTIN",
+   "length": 14
+  },
+  {
    "collapsible": 1,
    "fieldname": "homologation_section",
    "fieldtype": "Section Break",
@@ -233,7 +241,7 @@
   }
  ],
  "links": [],
- "modified": "2026-11-20 12:00:00.000000",
+ "modified": "2026-11-20 17:04:20.958263",
  "modified_by": "Administrator",
  "module": "ARCA",
  "name": "ARCA Company Settings",
