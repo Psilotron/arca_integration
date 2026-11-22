@@ -1,0 +1,19 @@
+{
+ "action": "Go to Page",
+ "action_label": "Verify the connection",
+ "creation": "2026-11-20 12:00:00.000000",
+ "description": "Press **Verify Connection**. Each check turns green or says what to fix.\n\nStart in **Homologation** and make a test invoice. To invoice for real, change **Environment** to **Production** and repeat the certificate and point of sale steps.",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2026-11-21 18:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "ARCA Connection",
+ "owner": "Administrator",
+ "path": "arca-company-settings",
+ "show_form_tour": 0,
+ "title": "Verify the connection"
+}

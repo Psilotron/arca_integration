@@ -1,0 +1,33 @@
+# ARCA credentials — certificates and private keys never enter the repo
+tmp/
+*.crt
+*.key
+*.pem
+*.p12
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# tests and tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.log
+
+# author's local planning workspace
+.superpowers/
+
+# system and editor
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+*.tar.gz

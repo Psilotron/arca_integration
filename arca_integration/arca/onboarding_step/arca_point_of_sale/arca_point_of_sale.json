@@ -1,0 +1,19 @@
+{
+ "action": "Go to Page",
+ "action_label": "Choose the point of sale",
+ "creation": "2026-11-20 12:00:00.000000",
+ "description": "1. On the ARCA website, open **Administración de puntos de venta y domicilios**.\n2. Create a point of sale of type **Factura electrónica - Codificación de productos - Web services**. Use it only for ERPNext.\n3. Press **Verify Connection** and choose it in **Default Point of Sale**.",
+ "docstatus": 0,
+ "doctype": "Onboarding Step",
+ "idx": 0,
+ "is_complete": 0,
+ "is_single": 0,
+ "is_skipped": 0,
+ "modified": "2026-11-21 18:00:00.000000",
+ "modified_by": "Administrator",
+ "name": "ARCA Point of Sale",
+ "owner": "Administrator",
+ "path": "arca-company-settings",
+ "show_form_tour": 0,
+ "title": "Choose the point of sale"
+}

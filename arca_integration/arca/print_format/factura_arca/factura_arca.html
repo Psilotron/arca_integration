@@ -1,0 +1,173 @@
+{#- Factura ARCA: lays out what arca_print_data(doc) returns; no fiscal rule lives here. -#}
+{%- set d = arca_print_data(doc) -%}
+{%- macro money(value) -%}{{ frappe.utils.fmt_money(value or 0, currency=doc.currency) }}{%- endmacro -%}
+{%- macro day(value) -%}{{ frappe.utils.formatdate(value) if value else "" }}{%- endmacro -%}
+<style>
+	.arca { font-size: 9pt; color: #111; }
+	.arca table { width: 100%; border-collapse: collapse; }
+	.arca td, .arca th { padding: 3px 5px; vertical-align: top; }
+	.arca .box { border: 1px solid #111; }
+	.arca .head td { width: 45%; }
+	.arca .head td.letter { width: 10%; text-align: center; border-left: 1px solid #111; border-right: 1px solid #111; }
+	.arca .letter b { display: block; font-size: 28pt; line-height: 1.1; }
+	.arca .letter small { font-size: 7pt; }
+	.arca h2 { font-size: 14pt; margin: 0 0 4px; }
+	.arca .items th { border-bottom: 1px solid #111; background: #f2f2f2; text-align: left; }
+	.arca .items td { border-bottom: 1px solid #ddd; }
+	.arca .num { text-align: right; white-space: nowrap; }
+	.arca .totals td { padding: 2px 5px; }
+	.arca .totals .grand td { font-weight: bold; font-size: 11pt; border-top: 1px solid #111; }
+	.arca .band { padding: 6px; text-align: center; font-weight: bold; font-size: 11pt; margin-bottom: 6px; }
+	.arca .band.homologation { background: #fff3cd; border: 1px solid #c9a227; }
+	.arca .band.no-cae { background: #f8d7da; border: 1px solid #b02a37; color: #b02a37; }
+	.arca .watermark { position: absolute; top: 40%; left: 0; right: 0; text-align: center; font-size: 48pt;
+		font-weight: bold; color: rgba(176, 42, 55, 0.12); transform: rotate(-30deg); z-index: 0; }
+	.arca .muted { color: #555; }
+	.arca .section { margin-top: 6px; }
+</style>
+<div class="arca">
+{%- if not d.applies or not d.voucher %}
+	<div class="band no-cae">{{ _("This invoice is not an ARCA voucher.") }}</div>
+{%- else %}
+	{%- if d.homologation %}
+	<div class="band homologation">{{ _("HOMOLOGATION — NO FISCAL VALIDITY") }}</div>
+	{%- endif %}
+	{%- if not d.authorized %}
+	<div class="band no-cae">{{ _("NO CAE — NOT VALID AS AN INVOICE") }}</div>
+	<div class="watermark">{{ _("NO CAE") }}</div>
+	{%- endif %}
+
+	<table class="box head">
+		<tr>
+			<td>
+				<h2>{{ d.issuer.name }}</h2>
+				<div>{{ d.issuer.address }}</div>
+				<div><b>{{ _("VAT Condition") }}:</b> {{ d.issuer.vat_condition }}</div>
+			</td>
+			<td class="letter">
+				<b>{{ d.letter }}</b>
+				<small>{{ _("CODE") }} {{ d.code }}</small>
+			</td>
+			<td>
+				<h2>{{ d.title }}</h2>
+				<div><b>{{ _("Point of Sale") }}:</b> {{ d.point_of_sale }}
+					<b>{{ _("Number") }}:</b> {{ d.number or "—" }}</div>
+				<div><b>{{ _("Issue Date") }}:</b> {{ day(d.issue_date) }}</div>
+				<div><b>{{ _("CUIT") }}:</b> {{ d.issuer.cuit }}</div>
+				<div><b>{{ _("Gross Income") }}:</b> {{ d.issuer.gross_income }}</div>
+				<div><b>{{ _("Activity Start Date") }}:</b> {{ day(d.issuer.activity_start) }}</div>
+			</td>
+		</tr>
+	</table>
+
+	{%- if d.service_start %}
+	<table class="box section">
+		<tr>
+			<td><b>{{ _("Billed Period From") }}:</b> {{ day(d.service_start) }}</td>
+			<td><b>{{ _("Billed Period To") }}:</b> {{ day(d.service_end) }}</td>
+			<td><b>{{ _("Due Date for Payment") }}:</b> {{ day(d.payment_due) }}</td>
+		</tr>
+	</table>
+	{%- endif %}
+
+	<table class="box section">
+		<tr>
+			<td>
+				<div><b>{{ _("Customer") }}:</b> {{ d.receiver.name }}</div>
+				<div><b>{{ _("Fiscal Address") }}:</b> {{ d.receiver.address }}</div>
+			</td>
+			<td>
+				{%- if d.receiver.document_number %}
+				<div><b>{{ d.receiver.document_type }}:</b> {{ d.receiver.document_number }}</div>
+				{%- endif %}
+				<div><b>{{ _("VAT Condition") }}:</b> {{ d.receiver.vat_condition }}</div>
+				<div><b>{{ _("Sale Condition") }}:</b> {{ d.sale_condition }}</div>
+			</td>
+		</tr>
+		{%- for a in d.associated %}
+		<tr><td colspan="2"><b>{{ _("Corrects") }}:</b> {{ a.name }} {{ a.number }} · {{ day(a.issue_date) }}</td></tr>
+		{%- endfor %}
+		{%- if d.foreign_currency %}
+		<tr><td colspan="2"><b>{{ _("Voucher Currency") }}:</b> {{ d.currency }} · <b>{{ _("Voucher Exchange Rate") }}:</b> {{ d.exchange_rate }}</td></tr>
+		{%- endif %}
+	</table>
+
+	<table class="items section">
+		<thead>
+			<tr>
+				<th>{{ _("Code") }}</th>
+				<th>{{ _("Description") }}</th>
+				<th class="num">{{ _("Quantity") }}</th>
+				<th>{{ _("Unit") }}</th>
+				<th class="num">{{ _("Unit Price") }}</th>
+				{%- if d.show_vat %}
+				<th class="num">{{ _("VAT %") }}</th>
+				<th class="num">{{ _("VAT") }}</th>
+				{%- endif %}
+				<th class="num">{{ _("Amount") }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{%- for item in d.lines %}
+			<tr>
+				<td>{{ item.code }}</td>
+				<td>{{ item.description }}</td>
+				<td class="num">{{ frappe.utils.flt(item.quantity, 2) }}</td>
+				<td>{{ item.uom }}</td>
+				<td class="num">{{ money(item.unit_price) }}</td>
+				{%- if d.show_vat %}
+				<td class="num">{{ item.vat_rate if item.vat_rate is not none else "—" }}</td>
+				<td class="num">{{ money(item.vat_amount) }}</td>
+				{%- endif %}
+				<td class="num">{{ money(item.amount) }}</td>
+			</tr>
+			{%- endfor %}
+		</tbody>
+	</table>
+
+	<table class="section">
+		<tr>
+			<td style="width: 55%">
+				{%- if d.transparency %}
+				<div class="box" style="padding: 4px">
+					<b>{{ _("Consumer Tax Transparency Regime (Law 27.743)") }}</b>
+					<div>{{ _("VAT Included") }}: {{ money(d.transparency.vat) }}</div>
+					<div>{{ _("Other National Indirect Taxes") }}: {{ money(d.transparency.other) }}</div>
+				</div>
+				{%- endif %}
+			</td>
+			<td>
+				<table class="totals">
+					{%- if d.show_vat %}
+					<tr><td>{{ _("Taxed Net Amount") }}</td><td class="num">{{ money(d.taxed) }}</td></tr>
+					{%- for vat in d.vat_subtotals %}
+					<tr><td>{{ _("VAT") }} {{ vat.name }}</td><td class="num">{{ money(vat.amount) }}</td></tr>
+					{%- endfor %}
+					{%- if d.untaxed %}<tr><td>{{ _("Untaxed") }}</td><td class="num">{{ money(d.untaxed) }}</td></tr>{%- endif %}
+					{%- if d.exempt %}<tr><td>{{ _("Exempt") }}</td><td class="num">{{ money(d.exempt) }}</td></tr>{%- endif %}
+					{%- else %}
+					<tr><td>{{ _("Subtotal") }}</td><td class="num">{{ money(d.subtotal) }}</td></tr>
+					{%- endif %}
+					{%- for tax in d.other_taxes %}
+					<tr><td>{{ tax.name }}</td><td class="num">{{ money(tax.amount) }}</td></tr>
+					{%- endfor %}
+					<tr class="grand"><td>{{ _("Total") }}</td><td class="num">{{ money(d.total) }}</td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	{%- if d.authorized %}
+	<table class="box section">
+		<tr>
+			<td style="width: 110px"><img src="{{ d.qr }}" style="width: 100px; height: 100px" alt="QR"></td>
+			<td>
+				<div><b>{{ _("Authorized Voucher") }}</b></div>
+				<div><b>{{ _("CAE") }}:</b> {{ d.cae }}</div>
+				<div><b>{{ _("CAE Due Date") }}:</b> {{ day(d.cae_due_date) }}</div>
+			</td>
+		</tr>
+	</table>
+	{%- endif %}
+{%- endif %}
+</div>

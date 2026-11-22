@@ -1,0 +1,122 @@
+[
+ {
+  "code": "1",
+  "description": "Factura A"
+ },
+ {
+  "code": "2",
+  "description": "Nota de Débito A"
+ },
+ {
+  "code": "3",
+  "description": "Nota de Crédito A"
+ },
+ {
+  "code": "4",
+  "description": "Recibo A"
+ },
+ {
+  "code": "5",
+  "description": "Nota de Venta al contado A"
+ },
+ {
+  "code": "6",
+  "description": "Factura B"
+ },
+ {
+  "code": "7",
+  "description": "Nota de Débito B"
+ },
+ {
+  "code": "8",
+  "description": "Nota de Crédito B"
+ },
+ {
+  "code": "9",
+  "description": "Recibo B"
+ },
+ {
+  "code": "10",
+  "description": "Nota de Venta al contado B"
+ },
+ {
+  "code": "11",
+  "description": "Factura C"
+ },
+ {
+  "code": "12",
+  "description": "Nota de Débito C"
+ },
+ {
+  "code": "13",
+  "description": "Nota de Crédito C"
+ },
+ {
+  "code": "15",
+  "description": "Recibo C"
+ },
+ {
+  "code": "49",
+  "description": "Comprobante de Compra de Bienes Usados a Consumidor Final"
+ },
+ {
+  "code": "51",
+  "description": "Factura A con leyenda OPERACIÓN SUJETA A RETENCIÓN"
+ },
+ {
+  "code": "52",
+  "description": "Nota de Débito A con leyenda OPERACIÓN SUJETA A RETENCIÓN"
+ },
+ {
+  "code": "53",
+  "description": "Nota de Crédito A con leyenda OPERACIÓN SUJETA A RETENCIÓN"
+ },
+ {
+  "code": "54",
+  "description": "Recibo M"
+ },
+ {
+  "code": "88",
+  "description": "Remito Electrónico de Tabaco Acondicionado (sólo para comprobantes asociados)"
+ },
+ {
+  "code": "201",
+  "description": "Factura de Crédito electrónica MiPyMEs (FCE) A"
+ },
+ {
+  "code": "202",
+  "description": "Nota de Débito electrónica MiPyMEs (FCE) A"
+ },
+ {
+  "code": "203",
+  "description": "Nota de Crédito electrónica MiPyMEs (FCE) A"
+ },
+ {
+  "code": "206",
+  "description": "Factura de Crédito electrónica MiPyMEs (FCE) B"
+ },
+ {
+  "code": "207",
+  "description": "Nota de Débito electrónica MiPyMEs (FCE) B"
+ },
+ {
+  "code": "208",
+  "description": "Nota de Crédito electrónica MiPyMEs (FCE) B"
+ },
+ {
+  "code": "211",
+  "description": "Factura de Crédito electrónica MiPyMEs (FCE) C"
+ },
+ {
+  "code": "212",
+  "description": "Nota de Débito electrónica MiPyMEs (FCE) C"
+ },
+ {
+  "code": "213",
+  "description": "Nota de Crédito electrónica MiPyMEs (FCE) C"
+ },
+ {
+  "code": "990",
+  "description": "Remito Electrónico de Tabaco en Hebras (sólo para comprobantes asociados)"
+ }
+]
