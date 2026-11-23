@@ -23,6 +23,7 @@
 	.arca .watermark { position: absolute; top: 40%; left: 0; right: 0; text-align: center; font-size: 48pt;
 		font-weight: bold; color: rgba(176, 42, 55, 0.12); transform: rotate(-30deg); z-index: 0; }
 	.arca .muted { color: #555; }
+	.arca .logo { max-width: 100%; max-height: 20mm; margin-bottom: 4px; }
 	.arca .section { margin-top: 6px; }
 </style>
 <div class="arca">
@@ -40,6 +41,9 @@
 	<table class="box head">
 		<tr>
 			<td>
+				{%- if d.issuer.logo %}
+				<img class="logo" src="{{ d.issuer.logo }}" alt="{{ d.issuer.name }}">
+				{%- endif %}
 				<h2>{{ d.issuer.name }}</h2>
 				<div>{{ d.issuer.address }}</div>
 				<div><b>{{ _("VAT Condition") }}:</b> {{ d.issuer.vat_condition }}</div>

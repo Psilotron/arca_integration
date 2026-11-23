@@ -121,8 +121,12 @@ def _environment(doc, settings) -> str:
 
 def _issuer(doc, settings) -> dict:
 	cuit = settings.cuit or ""
+	company = (
+		frappe.db.get_value("Company", doc.company, ["company_name", "company_logo"], as_dict=True) or {}
+	)
 	return {
-		"name": frappe.db.get_value("Company", doc.company, "company_name") or doc.company,
+		"name": company.get("company_name") or doc.company,
+		"logo": company.get("company_logo") or "",
 		"cuit": f"{cuit[:2]}-{cuit[2:10]}-{cuit[10:]}" if len(cuit) == 11 else cuit,
 		"vat_condition": _("IVA Responsable Inscripto"),
 		"gross_income": settings.gross_income_number or "",
