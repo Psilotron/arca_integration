@@ -42,7 +42,7 @@
 		<tr>
 			<td>
 				{%- if d.issuer.logo %}
-				<img class="logo" src="{{ d.issuer.logo }}" alt="{{ d.issuer.name }}">
+				<img class="logo" src="{{ d.issuer.logo }}" alt="{{ d.issuer.name | e }}">
 				{%- endif %}
 				<h2>{{ d.issuer.name }}</h2>
 				<div>{{ d.issuer.address }}</div>
