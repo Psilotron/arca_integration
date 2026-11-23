@@ -66,6 +66,20 @@ class TestPrinting(ArcaInvoiceTestCase):
 		self.assertTrue(arca_print_data(doc)["homologation"])
 		self.assertIn("HOMOLOGATION", self.html(doc))
 
+	def test_company_logo_is_shown(self):
+		doc = self.authorized()
+		logo = "/files/_test_arca_logo.png"
+		frappe.db.set_value("Company", doc.company, "company_logo", logo)
+		self.addCleanup(frappe.db.set_value, "Company", doc.company, "company_logo", None)
+		self.assertEqual(arca_print_data(doc)["issuer"]["logo"], logo)
+		self.assertIn(f'class="logo" src="{logo}"', self.html(doc))
+
+	def test_without_company_logo_no_image_is_printed(self):
+		doc = self.authorized()
+		frappe.db.set_value("Company", doc.company, "company_logo", None)
+		self.assertEqual(arca_print_data(doc)["issuer"]["logo"], "")
+		self.assertNotIn('class="logo"', self.html(doc))
+
 	def test_letter_is_kept(self):
 		doc = self.authorized()
 		frappe.db.set_value("Customer", CUSTOMER, "arca_receiver_vat_condition", "5")
